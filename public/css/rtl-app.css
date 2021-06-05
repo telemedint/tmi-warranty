@@ -1,0 +1,26 @@
+.title{
+
+    text-align:right;
+    
+    }
+    
+    body{
+        direction: rtl;
+    }
+    h1{
+        direction: rtl;
+        text-align: right;
+    }
+    .form-in{
+        direction: rtl;
+        text-align: right;
+    }
+  
+    .add{
+        float: left;
+    }
+    .dropdown-menu.show {
+    
+    text-align: right;
+    
+    }
