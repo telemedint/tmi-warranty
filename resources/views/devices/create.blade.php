@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="serial" class="mt-3 text-monospace"><h5>Serial:</h5></label>
+                            <label for="serial" class="mt-3 text-monospace"><h5>{{__('translation.serial')}}:</h5></label>
                             <input type="text" name="serial" placeholder="Enter serial number" 
                             class="form-control @error('serial') is-invalid @enderror"
                             @isset($device)
@@ -37,23 +37,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="image" class="mt-3 text-monospace"><h5>Image:</h5></label>
+                            <label for="image" class="mt-3 text-monospace"><h5>{{__('translation.image')}}:</h5></label>
                             <input type="file" name="image" class="form-control"
                             @isset($device)value="{{$device->image}}" @endisset>
                         </div>
                             
                         <div class="form-group">
-                            <label for="category_id" class="mt-4 text-monospace"><h5>Category:</h5></label>
+                            <label for="category_id" class="mt-4 text-monospace"><h5>{{__('translation.category')}}y:</h5></label>
                             <select  name="category_id">
                                 @foreach($categories as $category)
-                                    <option value="{{$category->id}}" 
-                                        @isset($device)
-                                            @if ($category->id == $device->category_id) selected @endif
-                                        @endisset
-                                    class="form-control custom-select">
-                                        {{$category->name}}
-                                    </option>
+                                    <option value="{{$category->id}}" class="form-control custom-select">{{$category->name}}</option>
                                 @endforeach
+                                 {{-- @isset($device)
+                                            @if ($category->id == $device->category_id) selected @endif
+                                        @endisset --}}
                             </select>
                         </div>
                         

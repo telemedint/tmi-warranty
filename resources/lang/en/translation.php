@@ -15,13 +15,19 @@ return[
     'new_client'=> 'New Client',
     'update_device' => 'Update Device info',
     'new_device'=> 'New Device',
+    'submit' => 'Submit',
 
     'name' => 'Name',
     'company' => 'Company',
     'email' => ' Email',
     'phone' => ' Phone',
     'address' => 'Address',
-    
+
+    'password'=>'Password',
+    'remember'=>'Remember Me',
+    'login'=>'Login',
+    'forgot_pass'=>'Forgot Your Password ?',
+
     'image'=>'Image',
     'serial'=> 'Serial',
     'category'=>'Category',
