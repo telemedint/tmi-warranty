@@ -32,9 +32,12 @@
                             @endisset>
                         </div>
 
-                        <div class="form-group">
-                            <img src="{{asset('storage/'. $device->image)}}" alt="image" style="width: 100%">
-                        </div>
+                        @isset($device)
+                            <div class="form-group">
+                                <img src="{{asset('storage/'. $device->image)}}" alt="image" style="width: 100%">
+                            </div>    
+                        @endisset
+                        
 
                         <div class="form-group">
                             <label for="image" class="mt-3 text-monospace"><h5>{{__('translation.image')}}:</h5></label>
@@ -46,11 +49,14 @@
                             <label for="category_id" class="mt-4 text-monospace"><h5>{{__('translation.category')}}y:</h5></label>
                             <select  name="category_id">
                                 @foreach($categories as $category)
-                                    <option value="{{$category->id}}" class="form-control custom-select">{{$category->name}}</option>
+                                    <option value="{{$category->id}}" class="form-control custom-select"
+                                        @isset($device) 
+                                            @if ($category->id == $device->category_id) selected @endif 
+                                        @endisset>
+                                            {{$category->name}}
+                                    </option>
                                 @endforeach
-                                 {{-- @isset($device)
-                                            @if ($category->id == $device->category_id) selected @endif
-                                        @endisset --}}
+                                 
                             </select>
                         </div>
                         
