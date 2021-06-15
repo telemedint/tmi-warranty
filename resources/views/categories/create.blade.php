@@ -15,8 +15,11 @@
                     @isset($category)
                         @method('PUT')
                     @endisset
-
+                        
+                    
                         <div class="form-group">
+
+                            {{-- Category Name --}}
                             <label for="name" class="text-monospace"><h5>Category Name:</h5></label>
                             <input type="text" name="name" placeholder="Enter Category's Name" 
                             class="form-control @error('name') is-invalid @enderror"
@@ -24,11 +27,20 @@
                                 value="{{$category->name}}"
                             @endisset>
 
+                            {{-- Code --}}
                             <label for="code" class="mt-3 text-monospace"><h5>Code:</h5></label>
                             <input type="text" name="code" placeholder="Enter code here" 
                             class="form-control @error('code') is-invalid @enderror"
                             @isset($category)
                                 value="{{$category->code}}"
+                            @endisset>
+
+                            {{-- Serial --}}
+                            <label for="serial" class="mt-3 text-monospace"><h5>Serial:</h5></label>
+                            <input type="text" name="serial" placeholder="Enter Category serial" 
+                            class="form-control @error('serial') is-invalid @enderror"
+                            @isset($category)
+                                value="{{$category->serial}}"
                             @endisset>
 
                             @if ($errors->any())

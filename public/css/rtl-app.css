@@ -4,13 +4,32 @@
     
     }
     
-    body{
-        direction: rtl;
-    }
+    html[dir="rtl"],
+    body,
     h1{
         direction: rtl;
         text-align: right;
     }
+
+    form label h5{
+        font-weight: 900;
+    }
+
+    /* form{
+        max-width: 800px;
+        display: grid;
+    }
+    form div {
+        position: relative;
+    }
+
+    form div label {
+        opacity: 0.3;
+        position: absolute;
+        top: 22px;
+        left: 20px;
+    } */
+
     .form-in{
         direction: rtl;
         text-align: right;

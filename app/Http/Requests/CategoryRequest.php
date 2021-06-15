@@ -25,7 +25,8 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name'=> 'required|unique:categories',
-            'code'=> 'required|unique:categories'
+            'code'=> 'required|unique:categories',
+            'serial'=> 'required|unique:categories'
         ];
     }
 }

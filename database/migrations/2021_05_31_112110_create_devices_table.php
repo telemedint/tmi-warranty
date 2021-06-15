@@ -17,6 +17,8 @@ class CreateDevicesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('serial');
+            $table->string('serial_first');
+            $table->string('serial_second');
             $table->string('image');
             $table->integer('category_id');
             $table->timestamps();

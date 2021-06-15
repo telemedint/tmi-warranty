@@ -20,11 +20,13 @@
                             <tr>
                                 <th>{{__('translation.name')}}</th>
                                 <th>{{__('translation.code')}}</th>
+                                <th>{{__('translation.serial')}}</th>
                             </tr>
                             @foreach ($categories as $category)
                                 <tr>
                                     <td><div class="list-item">{{$category->name}}</div></td>
                                     <td><div class="list-item">{{$category->code}}</div></td>
+                                    <td><div class="list-item">{{$category->serial}}</div></td>
                                     <td>
                                         <form class="float-right" action="{{route('categories.destroy', $category->id)}}" 
                                         method="POST">

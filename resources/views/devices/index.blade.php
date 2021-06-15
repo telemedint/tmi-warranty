@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-16">
+        <div class="col-md-16" style="width: 100%">
             <div class="card">
                 <div class="card-header">
                     <h1>@lang('translation.devices')</h1>
