@@ -40,6 +40,7 @@
                             @endif>
                         </div>
 
+<<<<<<< HEAD
                         {{-- Serial --}}
                         <div class="form-group">
                             <label for="serial" class="mt-3 text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
@@ -82,6 +83,13 @@
                                     @endisset>
                             </div>
                         </div>
+=======
+                        @isset($device)
+                            <div class="form-group">
+                                <img src="{{asset('storage/'. $device->image)}}" alt="image" style="width: 100%">
+                            </div>    
+                        @endisset
+>>>>>>> 7e3642a4ba79c92506b9fe855c2248381f1fad99
 
                         {{-- Image --}}
                         @isset($device)
@@ -107,11 +115,19 @@
                             <select  id="category"  name="category_id" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
                                 <option disabled selected value> -- select a Categroy -- </option>
                                 @foreach($categories as $category)
+<<<<<<< HEAD
                                     <option value="{{$category->id}}" class="form-control custom-select"
                                         @isset($device) 
                                             @if ($category->id == $device->category_id) selected @endif 
                                         @endisset>
                                             {{$category->name}}
+=======
+                                    <option value="{{$category->id}}" class="form-control custom-select" 
+                                    @isset($device)
+                                        @if ($category->id == $device->category_id) selected @endif
+                                    @endisset>
+                                        {{$category->name}}
+>>>>>>> 7e3642a4ba79c92506b9fe855c2248381f1fad99
                                     </option>
                                 @endforeach
                             </select>
@@ -146,9 +162,12 @@
     </div>
 </div>
 @endsection
+<<<<<<< HEAD
 
 @section('script')
 
 <script src="{{ asset('js/devices.js') }}"></script>
 
 @endsection
+=======
+>>>>>>> 7e3642a4ba79c92506b9fe855c2248381f1fad99
