@@ -39,7 +39,6 @@
                         </div>
 
                         {{-- Category --}}
-<<<<<<< HEAD
                         <div class="form-group" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right;" @endif>
                             <label for="category_serial" class="mt-4 text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
                                 <h5 style="font-weight: bold">{{__('translation.category')}}:</h5>
@@ -49,44 +48,25 @@
                                 <option disabled selected value> -- select a Categroy -- </option>
                                 @foreach($categories as $category)
                                     <option value="{{$category->serial}}" class="form-control custom-select"
-=======
-                        <div class="form-group mt-5">
-                            <label for="category_id" class="mt-4 text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
-                                <h5 style="font-weight: bold">{{__('translation.category')}}:</h5>
-                            </label>
-
-                            <select  id="category"  name="category_id" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
-                                <option disabled selected value> -- select a Categroy -- </option>
-                                @foreach($categories as $category)
- 
-                                    <option value="{{$category->id}}" class="form-control custom-select"
->>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
                                         @isset($device) 
                                             @if ($category->id == $device->category_id) selected @endif 
                                         @endisset>
                                             {{$category->name}}
-<<<<<<< HEAD
-=======
- 
->>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
                                     </option>
                                 @endforeach
                             </select>
                         </div>
-<<<<<<< HEAD
                         
-=======
-
->>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
                         {{-- Serial --}}
                         <div class="form-group">
-                            <label for="serial" class="text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
+                            <label for="serial" class="text-monospace">
                                 <h5 style="font-weight: bold">{{__('translation.serial')}}:</h5>
                             </label>
 
-                            <div class="serial" style="display: flex;">
+                            <div class="serial" style="display: flex;" id="serial">
                                 {{-- Category Serial --}}
-                                <input type="text" id= "category_serial" name="category_serial" readonly class="form-control" style="width: 25%; margin: 1%; text-align: center;" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif
+                                <input type="text" id= "category_serial" name="category_serial" readonly 
+                                class="form-control" style="width: 25%; margin: 1%; text-align: center;"
                                     @isset($device)
                                         value="{{$device->category->serial}}"
                                     @endisset>
@@ -95,56 +75,39 @@
                                 <input type="text" name="serial_second" id="serial_second" style="width: 35%; margin: 1%; text-align: center;"
                                 class="form-control @error('serial_second') is-invalid @enderror"
                                 @if(app()->getLocale() == 'ar')
-                                    dir="rtl" style= "float: right;"
                                     placeholder= "الرقم التسلسلي الثاني"
                                 @else
                                     placeholder="Enter second serial number"
                                 @endif
 
-                                @isset($device)
-                                    value="{{$device->serial}}"
-                                @endisset>
+                                @isset($device) value="{{$device->serial_second}}" @endisset>
 
                                 {{-- First Serial --}}
                                 <input type="text" name="serial_first" id="serial_first" style="width: 35%; margin: 1%; text-align: center;"
                                     class="form-control @error('serial_first') is-invalid @enderror"
                                     @if(app()->getLocale() == 'ar')
-                                        dir="rtl" style= "float: right;"
                                         placeholder= "أدخل الرقم التسلسلي الأول"
                                     @else
                                         placeholder="Enter first serial number"
                                     @endif
 
-                                    @isset($device)
-                                        value="{{$device->serial}}"
-                                    @endisset>
+                                    @isset($device) value="{{$device->serial_first}}" @endisset>
                             </div>
 
                             {{-- Full Serial --}}
                             <input type="text" id= "full_serial" name="full_serial" readonly class="form-control" 
-                            style="width: 50%; margin: 10%; text-align: center;"  @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif
-                                    @isset($device)
-                                        value="{{$device->serial}}"
-                                    @endisset>
+                            style="width: 50%; margin: 10%; text-align: center;"
+                            @isset($device)value="{{$device->full_serial}}" @endisset>
                         </div>
-<<<<<<< HEAD
-=======
- 
+
+                        {{-- Image --}}
                         @isset($device)
                             <div class="form-group">
                                 <img src="{{asset('storage/'. $device->image)}}" alt="image" style="width: 100%">
                             </div>    
-                        @endisset 
->>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
-
-                        {{-- Image --}}
-                        @isset($device)
-                            <div class="form-group" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right;" @endif>
-                                <img src="{{asset('storage/'. $device->image)}}" alt="image" style="width: 100%">
-                            </div>    
                         @endisset
 
-                        <div class="form-group mt-4" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
+                        <div class="form-group mt-4">
                             <label for="image" class="mt-3 text-monospace">
                                 <h5 style="font-weight: bold">{{__('translation.image')}}:</h5>
                             </label>
@@ -165,14 +128,9 @@
                             </div>
                         @endif
 
-
-                        <div class="form-group mt-4" @if(app()->getLocale() == 'ar') dir="rtl" @endif>
-                            <button type="submit" class="btn btn-success add mt-4"
-                            @if(app()->getLocale() == 'ar') 
-                                dir="rtl" style= "float: left;" 
-                            @else
-                                style= "float: right;" 
-                            @endif>
+                        {{-- Button --}}
+                        <div class="form-group mt-4">
+                            <button type="submit" class="btn btn-success submit_btn mt-4">
                                 {{isset($device) ? __('translation.update'):__('translation.submit')}}
                             </button>
                         </div>
@@ -182,18 +140,10 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 @endsection
 
-=======
-@endsection 
->>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
 @section('script')
 
-<script src="{{ asset('js/devices.js') }}"></script>
+    <script src="{{ asset('js/devices.js') }}"></script>
 
-<<<<<<< HEAD
 @endsection
-=======
-@endsection 
->>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d

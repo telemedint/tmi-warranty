@@ -25,7 +25,8 @@ class UpdateDeviceRequest extends FormRequest
     {
         return [
             'name'=> 'required',
-            'serial'=> 'required',
+            'serial_first' => 'required',
+            'serial_second' => 'required',
         ];
     }
 }

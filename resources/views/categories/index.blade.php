@@ -11,7 +11,7 @@
             <div class="card card-default">
                 <div class="card-header">
                     <h1>@lang('translation.categories')</h1>
-                    <a href="{{route('categories.create')}}" class="btn btn-success add">@lang('translation.add_category')</a>
+                    <a href="{{route('categories.create')}}" class="btn btn-success submit_btn">@lang('translation.add_category')</a>
                 </div>
 
                 <div class="card-body">

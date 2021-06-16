@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <h1>@lang('translation.devices')</h1>
-                    <a href="{{route('devices.create')}}" class="btn btn-success add">@lang('translation.add_device')</a>
+                    <a href="{{route('devices.create')}}" class="btn btn-success submit_btn">@lang('translation.add_device')</a>
                 </div>
 
                 <div class="card-body">
@@ -23,7 +23,7 @@
                                 <tr>
                                     <td><img src="{{asset('storage/'.$device->image)}}" alt="image" width="150px"></td>
                                     <td><div class="list-item">{{$device->name}}</div></td>
-                                    <td><div class="list-item">{{$device->serial}}</div></td>
+                                    <td><div class="list-item">{{$device->full_serial}}</div></td>
                                     <td>
                                         <div class="list-item">
                                             @if($category = App\Category::find($device->category_id))

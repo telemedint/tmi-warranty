@@ -44,7 +44,7 @@ class DevicesController extends Controller
 
         $device = Device::create([
             'name' => $request->name,
-            'serial' => $request->full_serial,
+            'full_serial' => $request->full_serial,
             'serial_second' => $request->serial_second,
             'serial_first' => $request->serial_first,
             'image' => $request->image->store('imges', 'public'),
@@ -86,12 +86,17 @@ class DevicesController extends Controller
      */
     public function update(UpdateDeviceRequest $request, Device $device)
     {
-        $data = $request->only('name', 'seial', 'category_id');
+        $data = $request->only('name', 'full_serial','serial_first','serial_second');
+        
+        $category_id = Category::where('serial', $request->category_serial)->first()->id;
+        $data['category_id'] = $category_id;
+        
         if ($request->hasFile('image')) {
             $image = $request->image->store('imges', 'public');
             Storage::disk('public')->delete($device->image);
             $data['image'] = $image;
         }
+
         $device->update($data);
         session()->flash('success', 'Device has been updated successfully');
         return redirect(route('devices.index'));

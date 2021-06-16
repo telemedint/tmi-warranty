@@ -17,37 +17,40 @@
                     @endif
                         <div class="form-group">
                             <label for="name" class="text-monospace" is><h5>{{__('translation.name')}}:</h5></label>
-                            <input type="text" name="name" placeholder="Enter Client's Name" 
-                            class="form-control @error('name') is-invalid @enderror"
-                            @isset($client)
-                                value="{{$client->name}}"
-                            @endisset>
+                            
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                            @if(app()->getLocale() == 'ar') placeholder= "أدخل اسم العميل" @else placeholder="Enter Client's Name"  @endif
+                            @isset($client) value="{{$client->name}}" @endisset>
 
+                            {{-- Company --}}
                             <label for="company" class="mt-3 text-monospace"><h5>{{__('translation.company')}}:</h5></label>
-                            <input type="text" name="company" placeholder="Enter company name" class="form-control"
-                            @isset($client)
-                                value="{{$client->company}}"
-                            @endisset>
+                            
+                            <input type="text" name="company" class="form-control"
+                            @if(app()->getLocale() == 'ar') placeholder= "أدخل اسم الشركة" @else placeholder="Enter company name" @endif
+                            @isset($client) value="{{$client->company}}" @endisset>
 
+                            {{-- Email --}}
                             <label for="email" class="mt-3 text-monospace"><h5>{{__('translation.email')}}:</h5></label>
-                            <input type="text" name="email" placeholder="Enter email address" class="form-control"
-                            @isset($client)
-                                value="{{$client->email}}"
-                            @endisset>
+                            
+                            <input type="text" name="email"  class="form-control"
+                            @if(app()->getLocale() == 'ar') placeholder= "أدخل الإيميل" @else placeholder="Enter email address"  @endif
+                            @isset($client) value="{{$client->email}}" @endisset>
 
+                            {{-- Phone --}}
                             <label for="phone" class="mt-3 text-monospace"><h5>{{__('translation.phone')}}:</h5></label>
-                            <input type="text" name="phone" placeholder="Enter phone number" 
-                            class="form-control @error('phone') is-invalid @enderror"
-                            @isset($client)
-                                value="{{$client->phone}}"
-                            @endisset>
+                            
+                            <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
+                            @if(app()->getLocale() == 'ar') placeholder= "أدخل رقم الهاتف" @else placeholder="Enter phone number"  @endif
+                            @isset($client) value="{{$client->phone}}" @endisset>
 
+                            {{-- Address --}}
                             <label for="address" class="mt-3 text-monospace"><h5>{{__('translation.address')}}:</h5></label>
-                            <input type="text" name="address" placeholder="Enter home address" class="form-control"
-                            @isset($client)
-                                value="{{$client->address}}"
-                            @endisset>
+                            
+                            <input type="text" name="address" class="form-control"
+                            @if(app()->getLocale() == 'ar') placeholder= "أدخل العنوان" @else placeholder="Enter address" @endif
+                            @isset($client) value="{{$client->address}}" @endisset>
 
+                            {{-- Errors --}}
                             @if ($errors->any())
                                 <div class="alert alert-danger mt-4">
                                     <ul>
@@ -61,7 +64,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success mt-4 float-right">{{isset($client) ? __('translation.update'):__('translation.submit')}}</button>
+                            <button type="submit" class="btn btn-success mt-4 submit_btn">{{isset($client) ? __('translation.update'):__('translation.submit')}}</button>
                         </div>
                     </form>
                 </div>

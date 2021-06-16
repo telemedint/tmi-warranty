@@ -1,18 +1,26 @@
-.title{
-
-    text-align:right;
-    
+    .title {
+        text-align: right;
     }
-    
-    html,
-    body,
-    *{
+
+    html, body, * {
         direction: rtl;
         text-align: right;
     }
 
-    form label h5{
+    #serial, #full_serial{
+        direction: ltr;
+    }
+
+    form label h5 {
         font-weight: 900;
+    }
+
+    .submit_btn {
+        float: left;
+    }
+
+    .dropdown-menu.show {
+        text-align: right;
     }
 
     /* form{
@@ -22,29 +30,9 @@
     form div {
         position: relative;
     }
-
     form div label {
         opacity: 0.3;
         position: absolute;
         top: 22px;
         left: 20px;
     } */
-
-    .form-in{
-        direction: rtl;
-        text-align: right;
-    }
-
-    .form-group{
-        direction: rtl;
-        text-align: right;
-    }
-  
-    .add{
-        float: left;
-    }
-    .dropdown-menu.show {
-    
-    text-align: right;
-    
-    }

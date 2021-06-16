@@ -6,8 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h1>@lang('translation.clients')</h1>
-                    <a href="{{route('clients.create')}}" class="btn btn-success add">@lang('translation.add_client')</a>
+                    <h1>{{__('translation.clients')}}</h1>
+                    <a href="{{route('clients.create')}}" class="btn btn-success submit_btn">{{__('translation.add_client')}}</a>
                 </div>
 
                 <div class="card-body">

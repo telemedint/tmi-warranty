@@ -20,29 +20,28 @@
                         <div class="form-group">
 
                             {{-- Category Name --}}
-                            <label for="name" class="text-monospace"><h5>Category Name:</h5></label>
-                            <input type="text" name="name" placeholder="Enter Category's Name" 
-                            class="form-control @error('name') is-invalid @enderror"
-                            @isset($category)
-                                value="{{$category->name}}"
-                            @endisset>
+                            <label for="name" class="text-monospace"><h5>{{__('translation.name')}}:</h5></label>
+                            
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                            @if(app()->getLocale() == 'ar') placeholder= "أدخل التصنيف" @else placeholder="Enter Category's Name" @endif
+                            @isset($category) value="{{$category->name}}" @endisset>
 
                             {{-- Code --}}
-                            <label for="code" class="mt-3 text-monospace"><h5>Code:</h5></label>
-                            <input type="text" name="code" placeholder="Enter code here" 
-                            class="form-control @error('code') is-invalid @enderror"
-                            @isset($category)
-                                value="{{$category->code}}"
-                            @endisset>
+                            <label for="code" class="mt-3 text-monospace"><h5>{{__('translation.code')}}:</h5></label>
+                            
+                            <input type="text" name="code" class="form-control @error('code') is-invalid @enderror"
+                            @if(app()->getLocale() == 'ar') placeholder= "أدخل الكود" @else placeholder="Enter code here" @endif
+                            @isset($category) value="{{$category->code}}" @endisset>
 
                             {{-- Serial --}}
-                            <label for="serial" class="mt-3 text-monospace"><h5>Serial:</h5></label>
-                            <input type="text" name="serial" placeholder="Enter Category serial" 
+                            <label for="serial" class="mt-3 text-monospace"><h5>{{__('translation.serial')}}:</h5></label>
+                            
+                            <input type="text" name="serial"  
                             class="form-control @error('serial') is-invalid @enderror"
-                            @isset($category)
-                                value="{{$category->serial}}"
-                            @endisset>
+                            @if(app()->getLocale() == 'ar') placeholder= "أدخل الرقم التسلسلي للقسم" @else placeholder="Enter Category serial" @endif
+                            @isset($category) value="{{$category->serial}}" @endisset>
 
+                            {{-- Errors --}}
                             @if ($errors->any())
                                 <div class="alert alert-danger mt-4">
                                     <ul>
@@ -55,8 +54,9 @@
 
                         </div>
 
+                        {{-- Submit Button --}}
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success mt-4 float-right">{{isset($category) ? 'Update':'Submit'}}</button>
+                            <button type="submit" class="btn btn-success mt-4 submit_btn">{{isset($category) ? __('translation.update'):__('translation.submit')}}</b  utton>
                         </div>
                     </form>
                 </div>
