@@ -30,7 +30,7 @@ class DevicesController extends Controller
      */
     public function create()
     {
-        return view('devices.create',['categories'=>Category::all()]);
+        return view('devices.create', ['categories' => Category::all()]);
     }
 
     /**
@@ -41,17 +41,18 @@ class DevicesController extends Controller
      */
     public function store(DeviceRequest $request)
     {
-        
-        $device = Device::create([
-            'name'=>$request->name,
-            'serial'=>$request->serial,
-            'image'=>$request->image->store('imges','public'),
-            'category_id'=>$request->category_id,
-        ]);
-        
-        session()->flash('success','device added successfully');
-        return redirect(route('devices.index'));
 
+        $device = Device::create([
+            'name' => $request->name,
+            'serial' => $request->full_serial,
+            'serial_second' => $request->serial_second,
+            'serial_first' => $request->serial_first,
+            'image' => $request->image->store('imges', 'public'),
+            'category_id' => Category::where('serial', $request->category_serial)->first()->id,
+        ]);
+
+        session()->flash('success', 'device added successfully');
+        return redirect(route('devices.index'));
     }
 
     /**
@@ -73,7 +74,7 @@ class DevicesController extends Controller
      */
     public function edit(Device $device)
     {
-        return view('devices.create',['device'=>$device,'categories'=>Category::all()]);
+        return view('devices.create', ['device' => $device, 'categories' => Category::all()]);
     }
 
     /**
@@ -85,9 +86,9 @@ class DevicesController extends Controller
      */
     public function update(UpdateDeviceRequest $request, Device $device)
     {
-        $data = $request->only('name','seial','category_id');
-        if($request->hasFile('image')){
-            $image = $request->image->store('imges','public');
+        $data = $request->only('name', 'seial', 'category_id');
+        if ($request->hasFile('image')) {
+            $image = $request->image->store('imges', 'public');
             Storage::disk('public')->delete($device->image);
             $data['image'] = $image;
         }

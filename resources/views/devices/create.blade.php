@@ -21,29 +21,45 @@
 
                         {{-- Device Name --}}
                         <div class="form-group">
-                            <label for="name" class="text-monospace" 
-                            @if(app()->getLocale() == 'ar')
-                                dir="rtl" style= "float: right;"
-                            @endif><h5 style="font-weight: bold">{{__('translation.name')}}:</h5></label>
+                            <label for="name" class="text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right;" @endif>
+                                <h5 style="font-weight: bold"> {{__('translation.name')}}:</h5>
+                            </label>
 
-                            <input type="text" name="name"  
-                            class="form-control @error('name') is-invalid @enderror"
-                            @isset($device)
-                                value="{{$device->name}}"
-                            @endisset
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                                @isset($device)
+                                    value="{{$device->name}}"
+                                @endisset
 
-                            @if(app()->getLocale() == 'ar')
-                                dir="rtl" style= "float: right;"
-                                placeholder= "أدخل اسم الجهاز"
-                            @else
-                                placeholder="Enter Device Name"
-                            @endif>
+                                @if(app()->getLocale() == 'ar')
+                                    dir="rtl" style= "float: right;"
+                                    placeholder= "أدخل اسم الجهاز"
+                                @else
+                                    placeholder="Enter Device Name"
+                                @endif>
                         </div>
 
-<<<<<<< HEAD
+                        {{-- Category --}}
+                        <div class="form-group" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right;" @endif>
+                            <label for="category_serial" class="mt-4 text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
+                                <h5 style="font-weight: bold">{{__('translation.category')}}:</h5>
+                            </label>
+
+                            <select  id="category"  name="category_serial" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
+                                <option disabled selected value> -- select a Categroy -- </option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->serial}}" class="form-control custom-select"
+                                        @isset($device) 
+                                            @if ($category->id == $device->category_id) selected @endif 
+                                        @endisset>
+                                            {{$category->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
                         {{-- Serial --}}
                         <div class="form-group">
-                            <label for="serial" class="mt-3 text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
+                            <label for="serial" class="text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
                                 <h5 style="font-weight: bold">{{__('translation.serial')}}:</h5>
                             </label>
 
@@ -55,7 +71,7 @@
                                     @endisset>
 
                                 {{-- Second Serial --}}
-                                <input type="text" name="serial_second" style="width: 35%; margin: 1%; text-align: center;"
+                                <input type="text" name="serial_second" id="serial_second" style="width: 35%; margin: 1%; text-align: center;"
                                 class="form-control @error('serial_second') is-invalid @enderror"
                                 @if(app()->getLocale() == 'ar')
                                     dir="rtl" style= "float: right;"
@@ -69,7 +85,7 @@
                                 @endisset>
 
                                 {{-- First Serial --}}
-                                <input type="text" name="serial_first" style="width: 35%; margin: 1%; text-align: center;"
+                                <input type="text" name="serial_first" id="serial_first" style="width: 35%; margin: 1%; text-align: center;"
                                     class="form-control @error('serial_first') is-invalid @enderror"
                                     @if(app()->getLocale() == 'ar')
                                         dir="rtl" style= "float: right;"
@@ -82,14 +98,14 @@
                                         value="{{$device->serial}}"
                                     @endisset>
                             </div>
+
+                            {{-- Full Serial --}}
+                            <input type="text" id= "full_serial" name="full_serial" readonly class="form-control" 
+                            style="width: 50%; margin: 10%; text-align: center;"  @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif
+                                    @isset($device)
+                                        value="{{$device->serial}}"
+                                    @endisset>
                         </div>
-=======
-                        @isset($device)
-                            <div class="form-group">
-                                <img src="{{asset('storage/'. $device->image)}}" alt="image" style="width: 100%">
-                            </div>    
-                        @endisset
->>>>>>> 7e3642a4ba79c92506b9fe855c2248381f1fad99
 
                         {{-- Image --}}
                         @isset($device)
@@ -106,32 +122,7 @@
                             @isset($device)value="{{$device->image}}" @endisset>
                         </div>
                             
-                        {{-- Category --}}
-                        <div class="form-group mt-5" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right;" @endif>
-                            <label for="category_id" class="mt-4 text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
-                                <h5 style="font-weight: bold">{{__('translation.category')}}:</h5>
-                            </label>
-
-                            <select  id="category"  name="category_id" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
-                                <option disabled selected value> -- select a Categroy -- </option>
-                                @foreach($categories as $category)
-<<<<<<< HEAD
-                                    <option value="{{$category->id}}" class="form-control custom-select"
-                                        @isset($device) 
-                                            @if ($category->id == $device->category_id) selected @endif 
-                                        @endisset>
-                                            {{$category->name}}
-=======
-                                    <option value="{{$category->id}}" class="form-control custom-select" 
-                                    @isset($device)
-                                        @if ($category->id == $device->category_id) selected @endif
-                                    @endisset>
-                                        {{$category->name}}
->>>>>>> 7e3642a4ba79c92506b9fe855c2248381f1fad99
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                        
                         
                         {{-- Errors --}}
                         @if ($errors->any())
@@ -162,12 +153,9 @@
     </div>
 </div>
 @endsection
-<<<<<<< HEAD
 
 @section('script')
 
 <script src="{{ asset('js/devices.js') }}"></script>
 
 @endsection
-=======
->>>>>>> 7e3642a4ba79c92506b9fe855c2248381f1fad99

@@ -24,8 +24,9 @@ class DeviceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required|unique:devices',
-            'serial'=> 'required|unique:devices',
+            'name' => 'required|unique:devices',
+            'serial_first' => 'required|unique:devices',
+            'serial_second' => 'required|unique:devices',
             //'image' => 'image'
         ];
     }
