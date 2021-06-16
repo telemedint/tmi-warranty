@@ -19,9 +19,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @if(app()->getLocale() == 'en')
-        <link rel="stylesheet" href="css/ltr-app.css">
+        <link rel="stylesheet" href="{{ asset('css/ltr-app.css') }}">
     @else
-        <link rel="stylesheet" href="css/rtl-app.css">
+        <link rel="stylesheet" href="{{ asset('css/rtl-app.css') }}">
     @endif
 </head>
 <body>

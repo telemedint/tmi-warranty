@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header" >
-                    <h1 @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right;" @endif>
+                    <h1>
                         {{isset($device) ? __('translation.update_device'):__('translation.new_device')}}
                     </h1>
                 </div>
@@ -39,6 +39,7 @@
                         </div>
 
                         {{-- Category --}}
+<<<<<<< HEAD
                         <div class="form-group" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right;" @endif>
                             <label for="category_serial" class="mt-4 text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
                                 <h5 style="font-weight: bold">{{__('translation.category')}}:</h5>
@@ -48,15 +49,35 @@
                                 <option disabled selected value> -- select a Categroy -- </option>
                                 @foreach($categories as $category)
                                     <option value="{{$category->serial}}" class="form-control custom-select"
+=======
+                        <div class="form-group mt-5">
+                            <label for="category_id" class="mt-4 text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
+                                <h5 style="font-weight: bold">{{__('translation.category')}}:</h5>
+                            </label>
+
+                            <select  id="category"  name="category_id" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
+                                <option disabled selected value> -- select a Categroy -- </option>
+                                @foreach($categories as $category)
+ 
+                                    <option value="{{$category->id}}" class="form-control custom-select"
+>>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
                                         @isset($device) 
                                             @if ($category->id == $device->category_id) selected @endif 
                                         @endisset>
                                             {{$category->name}}
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
                                     </option>
                                 @endforeach
                             </select>
                         </div>
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
                         {{-- Serial --}}
                         <div class="form-group">
                             <label for="serial" class="text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
@@ -106,6 +127,15 @@
                                         value="{{$device->serial}}"
                                     @endisset>
                         </div>
+<<<<<<< HEAD
+=======
+ 
+                        @isset($device)
+                            <div class="form-group">
+                                <img src="{{asset('storage/'. $device->image)}}" alt="image" style="width: 100%">
+                            </div>    
+                        @endisset 
+>>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
 
                         {{-- Image --}}
                         @isset($device)
@@ -152,10 +182,18 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 @endsection
 
+=======
+@endsection 
+>>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
 @section('script')
 
 <script src="{{ asset('js/devices.js') }}"></script>
 
+<<<<<<< HEAD
 @endsection
+=======
+@endsection 
+>>>>>>> 8e24643bdb4fe5493e374ef05af1a9947ec7d05d
