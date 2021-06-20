@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ asset('themes/frontend/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('themes/frontend/node_modules/fontawesome-4.7/css/font-awesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('themes/frontend/css/site.css') }}" />
+
+    <title>Telemed Warranty and Maintenance</title>
+</head>
+
+<body>
+    <section class="main container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <header>
+                    <a href="index.html">
+                        <img src="{{ asset('themes/frontend/assets/images/logo.PNG') }}" />
+                    </a>
+                </header>
+                <div class="device-serial-form inner-content main-padding">
+                    <h1 class="bold">
+                        Telemed electronic stethoscope 3rd generation
+                    </h1>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="grey bold">
+                                Serial number
+                            </p>
+                            <h4 class="bold">
+                                TMI-2017120219876
+                            </h4>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="grey bold">
+                                Purchase date
+                            </p>
+                            <h4 class="bold">
+                                23 March 2021
+                            </h4>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="grey bold">
+                                License valid to
+                            </p>
+                            <h4 class="bold green">
+                                23 March 2022
+                            </h4>
+                        </div>
+                        <div class="col-md-8">
+                            <br />
+                            <p class="grey bold">
+                                Registered to
+                            </p>
+                            <h4 class="bold">
+                                Ibrahim Badran Charitable Foundation
+                            </h4>
+                        </div>
+                        <div class="col-md-4">
+                            <br />
+                            <p class="grey bold">
+                                Branch
+                            </p>
+                            <h4 class="bold">
+                                Shiekh Zayed City, Giza, Egypt.
+                            </h4>
+                        </div>
+                        <div class="col-md-12">
+                            <br />
+                            <br />
+                            <h2 class="green bold">
+                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                Elligible for Telemed technical support
+                            </h2>
+                            <p class="bold support-desc">
+                                Technical support includes any software maintenance for the selected device such as
+                                installing the device software on different operating systems and resolving any
+                                technical issue related to the device
+                            </p>
+                            <br />
+                            <h2 class="green bold">
+                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                Elligible for Telemed technical support
+                            </h2>
+                            <p class="bold support-desc">
+                                Technical support includes any software maintenance for the selected device such as
+                                installing the device software on different operating systems and resolving any
+                                technical issue related to the device
+                            </p>
+                            <br />
+                            <h2 class="red bold">
+                                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                Elligible for Telemed technical support
+                            </h2>
+                            <p class="bold support-desc">
+                                Technical support includes any software maintenance for the selected device such as
+                                installing the device software on different operating systems and resolving any
+                                technical issue related to the device
+                            </p>
+                            <br />
+
+                            <a class="btn outline pull-right" href="#">Upgrade license</a>
+                            <a class="btn pull-right" href="#">Request maintenance</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 fill-home">
+                <a href="index.html" class="bold side-link">
+                    Check another serial <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                </a>
+                <div class="padding-for-side-image">
+                    <img src="{{ asset('themes/frontend/assets/images/phone.jpg') }}" />
+                </div>
+            </div>
+        </div>
+        <footer>
+            <small class="bold center">
+                This system is a part of Telemed International, for additional information please visit <a
+                    href="www.telemedint.net">www.telemedint.net</a> or call us <a href="tel:+2 0100 000 0000">+2 0100
+                    000 0000</a>
+            </small>
+        </footer>
+    </section>
+    <script src="{{ asset('themes/frontend/js/site.js') }}"></script>
+</body>
+
+</html>
