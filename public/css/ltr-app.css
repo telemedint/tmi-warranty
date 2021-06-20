@@ -12,3 +12,8 @@ body{
     float: right;
 }
 
+.flx-elem{
+    margin: 1%;
+    text-align: left;
+    width: 35%;
+  }

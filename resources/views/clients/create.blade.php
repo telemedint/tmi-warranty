@@ -64,7 +64,9 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success mt-4 submit_btn">{{isset($client) ? __('translation.update'):__('translation.submit')}}</button>
+                            <button type="submit" class="btn btn-success mt-4 submit_btn">
+                                {{isset($client) ? __('translation.update'):__('translation.add')}}
+                            </button>
                         </div>
                     </form>
                 </div>

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h1>{{isset($category)?'Update Category':'New Category'}}</h1></div>
+                <div class="card-header"><h1>{{isset($category)?__('translation.update_category') :__('translation.new_category')}}</h1></div>
 
                 <div class="card-body">
                     <form action="{{isset($category) ? 
@@ -56,7 +56,7 @@
 
                         {{-- Submit Button --}}
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success mt-4 submit_btn">{{isset($category) ? __('translation.update'):__('translation.submit')}}</b  utton>
+                            <button type="submit" class="btn btn-success mt-4 submit_btn">{{isset($category) ? __('translation.update'):__('translation.add')}}</b  utton>
                         </div>
                     </form>
                 </div>

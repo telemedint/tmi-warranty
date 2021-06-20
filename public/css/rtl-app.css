@@ -23,16 +23,8 @@
         text-align: right;
     }
 
-    /* form{
-        max-width: 800px;
-        display: grid;
-    }
-    form div {
-        position: relative;
-    }
-    form div label {
-        opacity: 0.3;
-        position: absolute;
-        top: 22px;
-        left: 20px;
-    } */
+    .flx-elem{
+        margin: 1%;
+        text-align: right;
+        width: 35%;
+      }

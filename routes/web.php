@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('/clients','ClientsController');
     Route::resource('/devices','DevicesController')->middleware('check.category');
     Route::resource('/categories','CategoriesController');
+    Route::resource('/invoices','InvoicesController');
 });
 
 Route::get('locale/{locale}',function($locale){
