@@ -7,7 +7,7 @@
 @font-face {
   font-family: cg;
   src: url(../assets/fonts/cgbold.ttf);
-  font-weight: bold
+  font-weight: 600
 }
 
 html, body {
@@ -24,7 +24,7 @@ header img {
 }
 
 .bold {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .blue, a {
@@ -84,7 +84,7 @@ footer small {
   padding-top: 0;
 }
 
-input {
+input, textarea {
   border: 1px solid #6f8996;
   padding: 10px 20px;
   width: 100%;
@@ -111,7 +111,7 @@ img {
 
 .padding-for-side-image {
   padding: 50px;
-  padding-top: 160px;
+  padding-top: 110px;
 }
 
 .support-desc {
@@ -137,5 +137,73 @@ a.btn {
 
 .side-link {
   float: right;
-  padding: 35px;
+  padding: 15px;
+}
+
+.grey-form {
+  background: #eceff1;
+  padding: 30px;
+  position: relative;
+}
+
+.close-form-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: #000;
+}
+
+.close-form-btn:hover {
+  color: #000;
+}
+
+.grey-form input, .grey-form textarea {
+  font-size: 14px;
+}
+
+.grey-form textarea {
+  height: 200px;
+}
+
+.padding-for-p {
+  padding: 20px;
+}
+
+.upgrade-title {
+  width: 385px;
+}
+
+.upgrade-title a {
+  position: relative;
+  top: -10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+.plan-card {
+  padding: 20px;
+  border: 2px solid;
+  /* opacity: 0.4; */
+  cursor: pointer;
+  /* transition: 0.2s opacity ease-in-out; */
+}
+
+/* .plan-card:hover {
+  opacity: 1;
+} */
+
+.plan-card.active {
+  background: #3f97f6;
+  color: #fff;
+  opacity: 1;
+  box-shadow: 3px 2px 5px rgb(0, 0, 0, 0.2);
+  border-color: #3f97f6;
 }
