@@ -15,12 +15,20 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
             $table->integer('client_id');
             $table->string('device_serial');
             $table->date('purchase_date');
+
+            $table->boolean('technical_support_chk');
             $table->date('technical_support')->nullable();
+            
+            $table->boolean('repairing_service_chk');
             $table->date('repairing_service')->nullable();
+            
+            $table->boolean('premium_support_chk');
             $table->date('premium_support')->nullable();
+            
             $table->timestamps();
         });
     }

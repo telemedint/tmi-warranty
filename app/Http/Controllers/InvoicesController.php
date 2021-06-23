@@ -42,12 +42,15 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        $device = Invoice::create([
+        $invoice = Invoice::create([
             'client_id' => $request->client_id,
             'device_serial' => $request->device_serial,
             'purchase_date' => $request->purchase_date,
+            'technical_support_chk' => $request->technical_support_chk,
             'technical_support' => $request->technical_support,
+            'repairing_service_chk' => $request->repairing_service_chk,
             'repairing_service' => $request->repairing_service,
+            'premium_support_chk' => $request->technical_support_chk,
             'premium_support' => $request->premium_support,
             //'client_id' => Client::where('name', $request->client_name)->first()->id,
         ]);

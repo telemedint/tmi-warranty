@@ -1,8 +1,4 @@
-var category_serial = document.getElementById('category_serial'),
-    second_serial = document.getElementById('serial_second'),
-    first_serial = document.getElementById('serial_first'),
-    device_serial = document.getElementById('device_serial'),
-    
+var device_serial = document.getElementById('device_serial'),
     purchase_date = document.getElementById('purchase_date'),
 
     technical_support_chk=document.getElementById('technical_support_chk'),

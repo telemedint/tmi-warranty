@@ -134,7 +134,7 @@
                             </label>
                             
                             <input type="checkbox" id="premium_support_chk" name="premium_support_chk" 
-                            class="form-control flx-elem" value="Yes" style="width: 5%;">
+                            class="form-control flx-elem" value="No" style="width: 5%;">
 
                             <input type="date" id="premium_support" name="premium_support"
                             disabled value="{{date('Y-m-d', strtotime('+1 year'))}}" style="text-align: center;"
