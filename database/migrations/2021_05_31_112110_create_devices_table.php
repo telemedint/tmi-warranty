@@ -16,9 +16,11 @@ class CreateDevicesTable extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            
             $table->string('full_serial');
-            $table->string('serial_first');
             $table->string('serial_second');
+            $table->string('serial_first');
+            
             $table->string('image');
             $table->integer('category_id');
             $table->timestamps();
