@@ -31,7 +31,7 @@ class InvoicesController extends Controller
     public function create()
     {
         
-        return view('invoices.create', ['clients' => Client::all(),'devices_json'=>json_encode(Device::all())]);
+        return view('invoices.create', ['clients' => Client::all()]);
     }
 
     /**

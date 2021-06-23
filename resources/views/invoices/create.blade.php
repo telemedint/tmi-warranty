@@ -51,8 +51,9 @@
                             @isset($invoice)value="{{$invoice->device_serial}}" @endisset>
                         </div>
 
-                        {{-- Device Name --}}
+                        {{-- Device Info (Name & Image) --}}
                         <div class="form-group" id="device_info" name="device_info" style="display: none">
+                            {{-- Device Name --}}
                             <div class="device_name" style="display: flex">
                                 <label for="device_name" class="text-monospace" name="device_name_label">
                                     <h4 style="font-weight: bold">{{__('translation.device_name')}}:</h4>
@@ -61,13 +62,11 @@
                                 <input type="text" id= "device_name" name="device_name" class="form-control"
                                 style="width: 50%; text-align: center;">
                             </div>
+                            {{-- Device Image --}}
+                            <img src="" id="device_image"  alt="Device Image" style="width: 100%">
                         </div>
 
-                        {{-- Device Image --}}
-                        <div class="form-group" id="device_image">
-                            
-                        </div>
-
+                        
                         @isset($invoice)
                         <div class="device_name" style="display: flex">
                             <label class="text-monospace">

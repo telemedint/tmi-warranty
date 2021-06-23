@@ -13,25 +13,6 @@ var category_serial = document.getElementById('category_serial'),
     
     premium_support_chk=document.getElementById('premium_support_chk'),
     premium_support=document.getElementById('premium_support');
-    
-//serial change
-/*
-category_serial.onkeyup = function (){
-    "use strict";
-    device_serial.value = category_serial.value + "-" + second_serial.value+ "-" + first_serial.value;
-}
-
-first_serial.onkeyup = function (){
-    "use strict";
-    device_serial.value = category_serial.value + "-" + second_serial.value+ "-" + first_serial.value;
-}
-
-second_serial.onkeyup = function (){
-    "use strict";
-    device_serial.value = category_serial.value + "-" + second_serial.value+ "-" + first_serial.value;
-}
-*/
-
 
 //Add Image onchange of serial
 $("#device_serial").on('change',function(event){
@@ -42,7 +23,7 @@ $("#device_serial").on('change',function(event){
     let _token   = $('meta[name="csrf-token"]').attr('content');
 
     $.ajax({
-      url: "/invoices/create/",
+      url: "{{base_url()}}invoices/create/",
       type:"POST",
       data:{
         serial: serial,
@@ -53,10 +34,7 @@ $("#device_serial").on('change',function(event){
         if(response) {
             $('#device_info').show();
             $('#device_name').val(response.device_name);
-            
-            var imgHtml = '<img src="' + response.device_image + '" alt="image" style="width: 100%">';
-            
-            $('#device_image').html(imgHtml);
+            $('#device_image').attr("src",response.device_image);
         }
       },
       error: function (data) {
