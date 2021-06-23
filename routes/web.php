@@ -14,7 +14,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
-Route::get('/', 'HomeController@check')->name('main-page');
+Route::get('/', 'HomeController@checkSerial')->name('main-page');
+Route::get('/device-details', 'HomeController@deviceDetails')->name('device-details');
+Route::get('/request-maintenance', 'HomeController@requestMaintenance')->name('request-maintenance');
+Route::get('/request-sent', 'HomeController@requestSent')->name('request-sent');
+Route::get('/upgrade-license', 'HomeController@upgradeLicense')->name('upgrade-license');
+Route::get('/payment', 'HomeController@payment')->name('payment');
+Route::get('/upgraded-license', 'HomeController@upgradedLicense')->name('upgraded-license');
 
 Route::post('/cpanel/invoices/create/', 'InvoicesController@getSerialInfo')->name('serial-info-ajax');
 

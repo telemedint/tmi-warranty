@@ -11,7 +11,20 @@
 
 <body>
     <section class="main container-fluid">
+         <div class="row">
+            <div class="col-md-12">
+                <header>
+                    <a href="index.html">
+                        <img src="{{ asset('themes/frontend/assets/images/logo.PNG') }}" />
+                    </a>
+                    <a href="index.html" class="bold side-link">
+                        Check another serial <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </header>
+            </div>
             @yield('content')  
+        </div>
+            
         
         <footer>
             <small class="bold center">

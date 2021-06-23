@@ -43,7 +43,7 @@
                         <div class="col-md-12">
                             <br />
                             <br />
-                            <form action="device.html">
+                            <form action="{{route('device-details')}}">
                                 <h3 class="bold">
                                     Device or software serial number
                                 </h3>

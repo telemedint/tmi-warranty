@@ -26,13 +26,38 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function device()
+    public function checkSerial()
+    {
+        return view('frontend.check');
+    }
+
+    public function deviceDetails()
     {
         return view('frontend.device');
     }
 
-    public function check()
+    public function requestMaintenance()
     {
-        return view('frontend.check');
+        return view('frontend.request');
+    }
+
+    public function requestSent()
+    {
+        return view('frontend.sent');
+    }
+
+    public function upgradeLicense()
+    {
+        return view('frontend.upgrade');
+    }
+
+     public function payment()
+    {
+        return view('frontend.payment');
+    }
+
+    public function upgradedLicense()
+    {
+        return view('frontend.upgraded');
     }
 }
