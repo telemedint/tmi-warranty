@@ -171,5 +171,34 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('js/invoices.js') }}"></script>
+    <script type="text/javascript">
+        //Add Image onchange of serial
+$("#device_serial").on('change',function(event){
+    event.preventDefault();
 
+    let serial = $("#device_serial").val();
+    
+    let _token   = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+      url: "{{ route('serial-info-ajax') }}",
+      type:"POST",
+      data:{
+        serial: serial,
+        _token: _token
+      },
+      success:function(response){
+        console.log(response);
+        if(response) {
+            $('#device_info').show();
+            $('#device_name').val(response.device_name);
+            $('#device_image').attr("src",response.device_image);
+        }
+      },
+      error: function (data) {
+        console.log(data);
+      }
+     });
+});
+    </script>
 @endsection

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Session;
 
 Route::get('/', 'HomeController@home')->name('main-page');
 
-Route::post('/clients_manager/invoices/create/', 'InvoicesController@getSerialInfo')->name('serial-info-ajax');
+Route::post('/invoices/create/', 'InvoicesController@getSerialInfo')->name('serial-info-ajax');
 
 Auth::routes(['register'=>false]);
 

@@ -10,34 +10,7 @@ var device_serial = document.getElementById('device_serial'),
     premium_support_chk=document.getElementById('premium_support_chk'),
     premium_support=document.getElementById('premium_support');
 
-//Add Image onchange of serial
-$("#device_serial").on('change',function(event){
-    event.preventDefault();
 
-    let serial = $("#device_serial").val();
-    
-    let _token   = $('meta[name="csrf-token"]').attr('content');
-
-    $.ajax({
-      url: "{{base_url()}}invoices/create/",
-      type:"POST",
-      data:{
-        serial: serial,
-        _token: _token
-      },
-      success:function(response){
-        console.log(response);
-        if(response) {
-            $('#device_info').show();
-            $('#device_name').val(response.device_name);
-            $('#device_image').attr("src",response.device_image);
-        }
-      },
-      error: function (data) {
-        console.log(data);
-      }
-     });
-});
 
 
 //Technical Support Enable
