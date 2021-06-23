@@ -15,6 +15,7 @@ var category_serial = document.getElementById('category_serial'),
     premium_support=document.getElementById('premium_support');
     
 //serial change
+/*
 category_serial.onkeyup = function (){
     "use strict";
     device_serial.value = category_serial.value + "-" + second_serial.value+ "-" + first_serial.value;
@@ -29,15 +30,41 @@ second_serial.onkeyup = function (){
     "use strict";
     device_serial.value = category_serial.value + "-" + second_serial.value+ "-" + first_serial.value;
 }
+*/
+
 
 //Add Image onchange of serial
-device_serial.onchange = function (){ 
-	// var img = document.getElementById('device_image'); 
-	var img = document.createElement('img'); 
-    img.src = 'https://www.pexels.com/photo/red-and-white-clownfish-under-water-1125979/'; 
-	document.getElementById('device_image').appendChild(img);
-    // document.getElementById('device_image').appendChild(img);
-}
+$("#device_serial").on('change',function(event){
+    event.preventDefault();
+
+    let serial = $("#device_serial").val();
+    
+    let _token   = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+      url: "/invoices/create/",
+      type:"POST",
+      data:{
+        serial: serial,
+        _token: _token
+      },
+      success:function(response){
+        console.log(response);
+        if(response) {
+            $('#device_info').show();
+            $('#device_name').val(response.device_name);
+            
+            var imgHtml = '<img src="' + response.device_image + '" alt="image" style="width: 100%">';
+            
+            $('#device_image').html(imgHtml);
+        }
+      },
+      error: function (data) {
+        console.log(data);
+      }
+     });
+});
+
 
 //Technical Support Enable
 technical_support_chk.onclick = function(){

@@ -16,7 +16,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = DB::table('categories')->get();
+        $categories = Category::all();
 
         return view('categories.index', ['categories' => $categories]);
     }

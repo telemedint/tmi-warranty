@@ -8,6 +8,7 @@ use App\Device;
 use App\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Javascript;
 
 class InvoicesController extends Controller
 {
@@ -18,7 +19,7 @@ class InvoicesController extends Controller
      */
     public function index()
     {
-        $invoices = DB::table('invoices')->paginate(10);
+        $invoices = Invoice::paginate(10);
         return view('invoices.index', ['invoices' => $invoices, 'clients', Client::all()]);
     }
 
@@ -29,7 +30,8 @@ class InvoicesController extends Controller
      */
     public function create()
     {
-        return view('invoices.create', ['clients' => Client::all()]);
+        
+        return view('invoices.create', ['clients' => Client::all(),'devices_json'=>json_encode(Device::all())]);
     }
 
     /**
@@ -108,5 +110,16 @@ class InvoicesController extends Controller
     {
         $invoice->delete();
         return redirect(route('invoices.index'));
+    }
+
+    public function getSerialInfo(Request $request)
+    {
+        
+        $serial = $request->serial;
+        $device = Device::where('full_serial',$serial)->first();
+        $device_name = $device->name;
+        $device_image = $device->image;
+
+        return response()->json(['device_name'=>$device_name, 'device_image'=>asset('storage/'. $device_image)]);
     }
 }

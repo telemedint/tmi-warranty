@@ -19,7 +19,7 @@ class DevicesController extends Controller
      */
     public function index()
     {
-        $devices = DB::table('devices')->paginate(10);
+        $devices = Device::paginate(10);
         return view('devices.index', ['devices' => $devices, 'categories', Category::all()]);
     }
 

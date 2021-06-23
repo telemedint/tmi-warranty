@@ -63,6 +63,8 @@ return[
     
     'client_name'=> 'اسم العميل',
     'device_serial' => 'الرقم التسلسلي للجهاز',
+    'device_name' => 'اسم الجهاز',
+    'device_image' => 'صورة الجهاز',
     'purchase_date' => 'تاريخ الشراء',
     'technical_support'=> 'الضمان',
     'repairing_service'=> 'خدمة الصيانة',

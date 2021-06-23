@@ -41,52 +41,44 @@
 
 
                         {{-- Serial --}}
-                        <div class="form-group mt-3">
+                        <div class="form-group mt-3" style="display: flex;">
                             <label for="serial" class="text-monospace">
                                 <h4 style="font-weight: bold">{{__('translation.device_serial')}}:</h4>
                             </label>
 
-                            <div class="serial" style="display: flex;" id="serial">
-                                {{-- Category Serial --}}
-                                <input type="text" id= "category_serial" name="category_serial" 
-                                class="form-control" style="width: 25%; margin: 1%; text-align: center;"
-                                    @isset($invoice)
-                                        value="{{explode('-',$invoice->device_serial)[0]}}"
-                                    @endisset>
-
-                                {{-- Second Serial --}}
-                                <input type="text" name="serial_second" id="serial_second" style="width: 35%; margin: 1%; text-align: center;"
-                                class="form-control @error('serial_second') is-invalid @enderror"
-                                @if(app()->getLocale() == 'ar')
-                                    placeholder= "الرقم التسلسلي الثاني"
-                                @else
-                                    placeholder="Enter second serial number"
-                                @endif
-
-                                @isset($invoice) value="{{explode('-',$invoice->device_serial)[1]}}" @endisset>
-
-                                {{-- First Serial --}}
-                                <input type="text" name="serial_first" id="serial_first" style="width: 35%; margin: 1%; text-align: center;"
-                                    class="form-control @error('serial_first') is-invalid @enderror"
-                                    @if(app()->getLocale() == 'ar')
-                                        placeholder= "أدخل الرقم التسلسلي الأول"
-                                    @else
-                                        placeholder="Enter first serial number"
-                                    @endif
-
-                                    @isset($invoice) value="{{explode('-',$invoice->device_serial)[2]}}" @endisset>
-                            </div>
-
-                            {{-- Full Serial --}}
-                            <input type="text" id= "device_serial" name="device_serial" readonly class="form-control" 
-                            style="width: 50%; margin: 10%; text-align: center;"
+                            <input type="text" id= "device_serial" name="device_serial" class="form-control" 
+                            style="width: 50%; text-align: center;"
                             @isset($invoice)value="{{$invoice->device_serial}}" @endisset>
                         </div>
 
-                        {{-- Image --}}
-                        <div class="form-group" id="device_image">
-                            {{-- <img src="{{asset('storage/'. $device->image)}}" alt="image" style="width: 100%"> --}}
+                        {{-- Device Name --}}
+                        <div class="form-group" id="device_info" name="device_info" style="display: none">
+                            <div class="device_name" style="display: flex">
+                                <label for="device_name" class="text-monospace" name="device_name_label">
+                                    <h4 style="font-weight: bold">{{__('translation.device_name')}}:</h4>
+                                </label>
+
+                                <input type="text" id= "device_name" name="device_name" class="form-control"
+                                style="width: 50%; text-align: center;">
+                            </div>
                         </div>
+
+                        {{-- Device Image --}}
+                        <div class="form-group" id="device_image">
+                            
+                        </div>
+
+                        @isset($invoice)
+                        <div class="device_name" style="display: flex">
+                            <label class="text-monospace">
+                                <h4 style="font-weight: bold">{{__('translation.device_name')}}:</h4>
+                            </label>
+                            <input type="text" class="form-control" style="text-align: center; font-weight: bold"
+                            value="{{App\Device::where('full_serial',$invoice->device_serial)->first()->name}}" >
+                        </div>
+                            <img src="{{asset('storage/'. App\Device::where('full_serial',$invoice->device_serial)->first()->image)}}" 
+                            alt="image" style="width: 100%">
+                        @endisset
                         
 
                         {{-- Purchase Date --}}
@@ -178,6 +170,7 @@
 
 @section('script')
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('js/invoices.js') }}"></script>
 
 @endsection

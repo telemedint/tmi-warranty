@@ -62,6 +62,8 @@ return[
     /*-------------------Invoice Info-------------------*/
     'client_name'=> 'Client Name',
     'device_serial' => 'Device Serial',
+    'device_name' => 'Device Name',
+    'device_image' => 'Device Image',
     'purchase_date' => 'Purchase Date',
     'technical_support'=> 'Technical Support',
     'repairing_service'=> 'Repairing Service',
