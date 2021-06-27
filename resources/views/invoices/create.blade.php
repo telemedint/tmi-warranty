@@ -156,7 +156,7 @@
                         {{-- Button --}}
                         <div class="form-group mt-4">
                             <button type="submit" class="btn btn-success submit_btn mt-4">
-                                {{isset($invoice) ? __('translation.update'):__('translation.submit')}}
+                                {{isset($invoice) ? __('translation.update'):__('translation.add')}}
                             </button>
                         </div>
                     </form>

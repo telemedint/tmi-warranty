@@ -41,15 +41,31 @@ class DevicesController extends Controller
      */
     public function store(DeviceRequest $request)
     {
+        $device = $request->all();
 
-        $device = Device::create([
-            'name' => $request->name,
-            'full_serial' => $request->full_serial,
-            'serial_second' => $request->serial_second,
-            'serial_first' => $request->serial_first,
-            'image' => $request->image->store('imges', 'public'),
-            'category_id' => Category::where('serial', $request->category_serial)->first()->id,
-        ]);
+        if($request->hasFile('image')){
+            $destination_path = 'public/images/devices';
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            //Storage::disk('public')->put('images/devices/', $image);
+            $path = $request->file('image')->storeAs($destination_path, $image_name);
+            $device['image'] = $image_name;
+        }
+        
+        $category_id = Category::where('serial', $request->category_serial)->first()->id;
+        $device['category_id'] = $category_id;
+        
+        Device::create($device);
+
+        // $device = Device::create([
+        //     'name' => $request->name,
+        //     'full_serial' => $request->full_serial,
+        //     'serial_second' => $request->serial_second,
+        //     'serial_first' => $request->serial_first,
+        //     'image' => $request->image->store('imges', 'public'),
+        //     'category_id' => Category::where('serial', $request->category_serial)->first()->id,
+        // ]);
+        
 
         session()->flash('success', 'device added successfully');
         return redirect(route('devices.index'));
@@ -92,8 +108,14 @@ class DevicesController extends Controller
         $data['category_id'] = $category_id;
         
         if ($request->hasFile('image')) {
-            $image = $request->image->store('imges', 'public');
+            // $image = $request->image->store('imges', 'public');
+            $destination_path = 'public/images/devices';
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('image')->storeAs($destination_path, $image_name);
+            
             Storage::disk('public')->delete($device->image);
+            
             $data['image'] = $image;
         }
 

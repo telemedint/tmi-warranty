@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+<?php
+    use Illuminate\Support\Facades\Storage;
+    use App\Category;
+?>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -21,12 +25,13 @@
                             </tr>
                             @foreach ($devices as $device)
                                 <tr>
-                                    <td><img src="{{asset('storage/'.$device->image)}}" alt="image" width="150px"></td>
+                                    <td><img src="{{asset('/storage/images/devices/'. $device->image)}}" alt="image" width="150px"> </td>
+                                    
                                     <td><div class="list-item">{{$device->name}}</div></td>
                                     <td><div class="list-item">{{$device->full_serial}}</div></td>
                                     <td>
                                         <div class="list-item">
-                                            @if($category = App\Category::find($device->category_id))
+                                            @if($category = Category::find($device->category_id))
                                                     {{$category->name}}  
                                             @else
                                                 Category has been deleted

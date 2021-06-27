@@ -44,7 +44,7 @@
                                 <h5 style="font-weight: bold">{{__('translation.category')}}:</h5>
                             </label>
 
-                            <select  id="category"  name="category_serial" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
+                            <select  id="category"  name="category_serial" class="form-control">
                                 <option disabled selected value> -- select a Categroy -- </option>
                                 @foreach($categories as $category)
                                     <option value="{{$category->serial}}" class="form-control custom-select"
@@ -111,7 +111,7 @@
                             <label for="image" class="mt-3 text-monospace">
                                 <h5 style="font-weight: bold">{{__('translation.image')}}:</h5>
                             </label>
-                            <input type="file" name="image" class="form-control"
+                            <input type="file" name="image" class="form-control-file"
                             @isset($device)value="{{$device->image}}" @endisset>
                         </div>
                             
