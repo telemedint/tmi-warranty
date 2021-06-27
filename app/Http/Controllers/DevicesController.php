@@ -44,18 +44,21 @@ class DevicesController extends Controller
         $device = $request->all();
 
         if($request->hasFile('image')){
-            $destination_path = 'public/images/devices';
+            $destination_path = 'images/devices';
             $image = $request->file('image');
             $image_name = $image->getClientOriginalName();
             //Storage::disk('public')->put('images/devices/', $image);
-            $path = $request->file('image')->storeAs($destination_path, $image_name);
-            $device['image'] = $image_name;
+            $path = $request->file('image')->storeAs($destination_path, $image_name, 'public');
+            $device['image'] = $destination_path . '/' . $image_name;
         }
         
         $category_id = Category::where('serial', $request->category_serial)->first()->id;
         $device['category_id'] = $category_id;
         
-        Device::create($device);
+        
+        // Device::create($device);
+        $device = new Device($device);
+        $device->save();
 
         // $device = Device::create([
         //     'name' => $request->name,

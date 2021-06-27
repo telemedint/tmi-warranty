@@ -32,7 +32,9 @@
                                         method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm ml-2">{{__('translation.delete')}}</button>
+                                            <button onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm ml-2">
+                                                {{__('translation.delete')}}
+                                            </button>
                                         </form>
                                         <a href="{{route('categories.edit',$category->id)}}" class="btn btn-primary btn-sm float-right">{{__('translation.edit')}}</a>
                                     </td>

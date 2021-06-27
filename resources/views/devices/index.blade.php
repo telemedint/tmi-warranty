@@ -25,7 +25,7 @@
                             </tr>
                             @foreach ($devices as $device)
                                 <tr>
-                                    <td><img src="{{asset('/storage/images/devices/'. $device->image)}}" alt="image" width="150px"> </td>
+                                    <td><img src="{{url($device->image)}}" alt="image" width="150px"> </td>
                                     
                                     <td><div class="list-item">{{$device->name}}</div></td>
                                     <td><div class="list-item">{{$device->full_serial}}</div></td>
@@ -43,7 +43,7 @@
                                         method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm ml-2">{{__('translation.delete')}}</button>
+                                            <button class="btn btn-danger btn-sm ml-2" onclick="return confirm('Are you sure?')">{{__('translation.delete')}}</button>
                                         </form>
                                         <a href="{{route('devices.edit',$device->id)}}" class="btn btn-primary btn-sm float-right">{{__('translation.edit')}}</a>
                                     </td>
