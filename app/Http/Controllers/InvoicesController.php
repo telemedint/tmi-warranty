@@ -42,18 +42,30 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        $invoice = Invoice::create([
-            'client_id' => $request->client_id,
-            'device_serial' => $request->device_serial,
-            'purchase_date' => $request->purchase_date,
-            'technical_support_chk' => $request->technical_support_chk,
-            'technical_support' => $request->technical_support,
-            'repairing_service_chk' => $request->repairing_service_chk,
-            'repairing_service' => $request->repairing_service,
-            'premium_support_chk' => $request->technical_support_chk,
-            'premium_support' => $request->premium_support,
-            //'client_id' => Client::where('name', $request->client_name)->first()->id,
-        ]);
+        $technical_support_chk = 
+        $repairing_service_chk = $request->has('repairing_service_chk');
+        $premium_support_chk = $request->has('premium_support_chk');
+        
+
+        $invoice = $request->only('client_id','purchase_date','device_serial','technical_support','repairing_service','premium_support');
+        $invoice['technical_support_chk'] = $request->technical_support_chk;
+        $invoice['repairing_service_chk'] = $request->repairing_service_chk;
+        $invoice['premium_support_chk'] = $request->premium_support_chk;
+        
+        // if($request->has('technical_support')){
+        //     $invoice['technical_support_chk'] = 1;
+        // }
+        
+        // if($request->has('repairing_service')){
+        //     $invoice['repairing_service_chk'] = 1;
+        // }
+        // if($request->has('premium_support')){
+        //     $invoice['premium_support_chk'] = 1;
+        // }
+        // $invoice = new Invoice($invoice);
+        // $invoice->save();
+        // dd($request);
+        Invoice::create($invoice);
 
         session()->flash('success', 'Invoice added successfully');
         return redirect(route('invoices.index'));
@@ -123,6 +135,6 @@ class InvoicesController extends Controller
         $device_name = $device->name;
         $device_image = $device->image;
 
-        return response()->json(['device_name'=>$device_name, 'device_image'=>asset('storage/'. $device_image)]);
+        return response()->json(['device_name'=>$device_name, 'device_image'=>asset('public/images/devices/'. $device_image)]);
     }
 }

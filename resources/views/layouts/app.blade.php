@@ -23,6 +23,8 @@
     @else
         <link rel="stylesheet" href="{{ asset('css/rtl-app.css') }}">
     @endif
+    
+    @yield('style')
 </head>
 <body>
     <div id="app">

@@ -21,12 +21,12 @@
 
 
                         {{-- Client Name --}}
-                        <div class="form-group">
-                            <label for="client_name" class="mt-4 text-monospace">
-                                <h4 style="font-weight: bold">{{__('translation.client_name')}}:</h4>
+                        <div class="form-group" style="display: flex;">
+                            <label for="client_name" class="text-monospace" style="width: 30%;">
+                                <h5 style="font-weight: bold">{{__('translation.client_name')}}:</h5>
                             </label>
 
-                            <select  id="client"  name="client_id" class="form-control">
+                            <select  id="client"  name="client_id" class="form-control" style="width: 50%">
                                 <option disabled selected value> -- select Client -- </option>
                                 @foreach($clients as $client)
                                     <option value="{{$client->id}}" class="form-control custom-select"
@@ -43,7 +43,7 @@
                         {{-- Serial --}}
                         <div class="form-group mt-3" style="display: flex;">
                             <label for="serial" class="text-monospace">
-                                <h4 style="font-weight: bold">{{__('translation.device_serial')}}:</h4>
+                                <h5 style="font-weight: bold">{{__('translation.device_serial')}}:</h5>
                             </label>
 
                             <input type="text" id= "device_serial" name="device_serial" class="form-control" 
@@ -53,30 +53,32 @@
 
                         {{-- Device Info (Name & Image) --}}
                         <div class="form-group" id="device_info" name="device_info" style="display: none">
-                            {{-- Device Name --}}
-                            <div class="device_name" style="display: flex">
-                                <label for="device_name" class="text-monospace" name="device_name_label">
-                                    <h4 style="font-weight: bold">{{__('translation.device_name')}}:</h4>
-                                </label>
+                            <div class="flex-box" style="display: flex;">
+                                {{-- Device Name --}}
+                                <div class="device_name" style="display: flex; width: 70%; padding: 40px">
+                                    <label for="device_name" class="text-monospace" name="device_name_label">
+                                        <h5 style="font-weight: bold">{{__('translation.device_name')}}:</h5>
+                                    </label>
 
-                                <input type="text" id= "device_name" name="device_name" class="form-control"
-                                style="width: 50%; text-align: center;">
+                                    <label type="text" id= "device_name" name="device_name" class="form-control"
+                                    style="width: 50%; text-align: center; margin-right: 3%; margin-left: 3%"> </label>
+                                </div>
+                                {{-- Device Image --}}
+                                <img src="" id="device_image"  alt="Device Image" style="width: 20%;" class="justify-content-center">
                             </div>
-                            {{-- Device Image --}}
-                            <img src="" id="device_image"  alt="Device Image" style="width: 100%">
                         </div>
 
                         
                         @isset($invoice)
                         <div class="device_name" style="display: flex">
                             <label class="text-monospace">
-                                <h4 style="font-weight: bold">{{__('translation.device_name')}}:</h4>
+                                <h5 style="font-weight: bold">{{__('translation.device_name')}}:</h5>
                             </label>
                             <input type="text" class="form-control" style="text-align: center; font-weight: bold"
                             value="{{App\Device::where('full_serial',$invoice->device_serial)->first()->name}}" >
                         </div>
-                            <img src="{{asset('storage/'. App\Device::where('full_serial',$invoice->device_serial)->first()->image)}}" 
-                            alt="image" style="width: 100%">
+                            <img src="{{asset('public/images/devices/'. App\Device::where('full_serial',$invoice->device_serial)->first()->image)}}" 
+                            alt="image" style="width: 50%">
                         @endisset
                         
 
@@ -84,7 +86,7 @@
                         <div class="purchase_date" style="display: flex;">
                             
                             <label for="purchase_date" class="flx-elem text-monospace">
-                                <h4 style="font-weight: bold"> {{__('translation.purchase_date')}}:</h4>
+                                <h5 style="font-weight: bold"> {{__('translation.purchase_date')}}:</h5>
                             </label>
                             
                             <input type="date" id="purchase_date" name="purchase_date"
@@ -97,15 +99,15 @@
                         <div class="technical_support mt-4" style="display: flex;">
                             
                             <label for="technical_support" class="flx-elem text-monospace">
-                                <h4 style="font-weight: bold"> {{__('translation.technical_support')}}:</h4>
+                                <h5 style="font-weight: bold"> {{__('translation.technical_support')}}:</h5>
                             </label>
                             
+                            <input type="hidden" name="technical_support_chk" value="0" />
                             <input type="checkbox" id="technical_support_chk" name="technical_support_chk" 
-                            class="form-control flx-elem" 
-                            checked value="Yes" style="width: 5%;">
+                            class="form-control flx-elem" checked value="1" style="width: 5%;">
 
                             <input type="date" id="technical_support" name="technical_support"
-                            value="{{date('Y-m-d', strtotime('+1 year'))}}" style="text-align: center;"
+                            value="{{isset($invoice) ? $invoice->technical_support : date('Y-m-d', strtotime('+1 year'))}}" style="text-align: center;"
                             class="form-control flx-elem @error('technical_support') is-invalid @enderror">
 
                         </div>
@@ -114,14 +116,15 @@
                         <div class="repairing_service mt-4" style="display: flex;">
                             
                             <label for="repairing_service" class="flx-elem text-monospace">
-                                <h4 style="font-weight: bold"> {{__('translation.repairing_service')}}:</h4>
+                                <h5 style="font-weight: bold"> {{__('translation.repairing_service')}}:</h5>
                             </label>
                             
-                            <input type="checkbox" id="repairing_service_chk" name="repairing_service_chk" 
-                            class="form-control flx-elem" checked value="Yes" style="width: 5%;">
+                            <input type="hidden" name="repairing_service_chk" value="0" />
+                            <input type="checkbox" id="repairing_service_chk" name="repairing_service_chk"
+                            class="form-control flx-elem" checked value="1"  style="width: 5%;">
 
                             <input type="date" id="repairing_service" name="repairing_service"
-                            value="{{date('Y-m-d', strtotime('+1 year'))}}" style="text-align: center;"
+                            value="{{isset($invoice) ? $invoice->repairing_service : date('Y-m-d', strtotime('+1 year'))}}" style="text-align: center;"
                             class="form-control flx-elem @error('repairing_service') is-invalid @enderror">
 
                         </div>
@@ -130,14 +133,15 @@
                         <div class="premium_support mt-4" style="display: flex;">
                             
                             <label for="premium_support" class="flx-elem text-monospace">
-                                <h4 style="font-weight: bold"> {{__('translation.premium_support')}}:</h4>
+                                <h5 style="font-weight: bold"> {{__('translation.premium_support')}}:</h5>
                             </label>
                             
+                            <input type="hidden" name="premium_support_chk" value="0" />
                             <input type="checkbox" id="premium_support_chk" name="premium_support_chk" 
-                            class="form-control flx-elem" value="No" style="width: 5%;">
+                            class="form-control flx-elem" value= "1" style="width: 5%;">
 
                             <input type="date" id="premium_support" name="premium_support"
-                            disabled value="{{date('Y-m-d', strtotime('+1 year'))}}" style="text-align: center;"
+                            disabled value="{{isset($invoice) ? $invoice->premium_support : date('Y-m-d', strtotime('+1 year'))}}" style="text-align: center;"
                             class="form-control flx-elem @error('premium_support') is-invalid @enderror">
 
                         </div>
@@ -191,7 +195,7 @@
                 console.log(response);
                 if(response) {
                     $('#device_info').show();
-                    $('#device_name').val(response.device_name);
+                    $('#device_name').html(response.device_name);
                     $('#device_image').attr("src",response.device_image);
                 }
             },

@@ -8,6 +8,7 @@ use App\Http\Requests\DeviceRequest;
 use App\Http\Requests\UpdateDeviceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class DevicesController extends Controller
@@ -44,12 +45,13 @@ class DevicesController extends Controller
         $device = $request->all();
 
         if($request->hasFile('image')){
-            $destination_path = 'images/devices';
+            // dd($request->image);
+            $destination_path = public_path('images/devices');
             $image = $request->file('image');
             $image_name = $image->getClientOriginalName();
             //Storage::disk('public')->put('images/devices/', $image);
-            $path = $request->file('image')->storeAs($destination_path, $image_name, 'public');
-            $device['image'] = $destination_path . '/' . $image_name;
+            $path = $image->move($destination_path, $image_name);
+            $device['image'] = $image_name;
         }
         
         $category_id = Category::where('serial', $request->category_serial)->first()->id;
@@ -112,14 +114,16 @@ class DevicesController extends Controller
         
         if ($request->hasFile('image')) {
             // $image = $request->image->store('imges', 'public');
-            $destination_path = 'public/images/devices';
+            $destination_path = public_path('images/devices');
             $image = $request->file('image');
             $image_name = $image->getClientOriginalName();
-            $path = $request->file('image')->storeAs($destination_path, $image_name);
+            $path = $image->move($destination_path, $image_name);
             
-            Storage::disk('public')->delete($device->image);
+            // Storage::disk('public')->delete($device->image);
+            // Storage::delete($destination_path . '/' . $image_name);
+            File::delete( $destination_path . '/' . $device->image);
             
-            $data['image'] = $image;
+            $data['image'] = $image_name;
         }
 
         $device->update($data);
@@ -135,6 +139,9 @@ class DevicesController extends Controller
      */
     public function destroy(Device $device)
     {
+        $destination_path = public_path('images/devices');
+        // Storage::disk('public')->delete('/images/devices/' . $device->image);
+        File::delete( $destination_path . '/' . $device->image);
         $device->delete();
         return redirect(route('devices.index'));
     }

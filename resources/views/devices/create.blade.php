@@ -40,7 +40,7 @@
 
                         {{-- Category --}}
                         <div class="form-group" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right;" @endif>
-                            <label for="category_serial" class="mt-4 text-monospace" @if(app()->getLocale() == 'ar') dir="rtl" style= "float: right; text-align: right" @endif>
+                            <label for="category_serial" class="mt-4 text-monospace">
                                 <h5 style="font-weight: bold">{{__('translation.category')}}:</h5>
                             </label>
 
@@ -96,23 +96,26 @@
 
                             {{-- Full Serial --}}
                             <input type="text" id= "full_serial" name="full_serial" readonly class="form-control" 
-                            style="width: 50%; margin: 10%; text-align: center;"
+                            style="width: 50%; margin: 5%; text-align: center; margin-right: auto; margin-left: auto;"
                             @isset($device)value="{{$device->full_serial}}" @endisset>
                         </div>
 
                         {{-- Image --}}
-                        @isset($device)
-                            <div class="form-group">
-                                <img src="{{asset('storage/'. $device->image)}}" alt="image" style="width: 100%">
-                            </div>    
-                        @endisset
+                        <div style="display: flex;">
+                            <div class="form-group mt-3">
+                                <label for="image" class="mt-3 text-monospace">
+                                    <h5 style="font-weight: bold">{{__('translation.image')}}:</h5>
+                                </label>
 
-                        <div class="form-group mt-4">
-                            <label for="image" class="mt-3 text-monospace">
-                                <h5 style="font-weight: bold">{{__('translation.image')}}:</h5>
-                            </label>
-                            <input type="file" name="image" class="form-control-file"
-                            @isset($device)value="{{$device->image}}" @endisset>
+                                <input type="file" name="image" class="form-control-file"
+                                @isset($device)value="{{$device->image}}" @endisset>
+                            </div>
+
+                            @isset($device)
+                                <img src="{{asset('/public/images/devices/'. $device->image)}}"
+                                alt="image" style="width: 30%;">
+                            @endisset
+                            
                         </div>
                             
                         
@@ -131,7 +134,7 @@
                         {{-- Button --}}
                         <div class="form-group mt-4">
                             <button type="submit" class="btn btn-success submit_btn mt-4">
-                                {{isset($device) ? __('translation.update'):__('translation.submit')}}
+                                {{isset($device) ? __('translation.update'):__('translation.add')}}
                             </button>
                         </div>
                     </form>

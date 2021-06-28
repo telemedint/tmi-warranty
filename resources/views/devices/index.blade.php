@@ -4,6 +4,16 @@
     use Illuminate\Support\Facades\Storage;
     use App\Category;
 ?>
+@section('style')
+    <style>
+        /* td{
+            width: 200px;
+            height: auto;
+            vertical-align: middle;
+        } */
+    </style>    
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -25,7 +35,7 @@
                             </tr>
                             @foreach ($devices as $device)
                                 <tr>
-                                    <td><img src="{{url($device->image)}}" alt="image" width="150px"> </td>
+                                    <td><img src="{{asset('/public/images/devices/'.$device->image)}}" alt="image" width="150px"> </td>
                                     
                                     <td><div class="list-item">{{$device->name}}</div></td>
                                     <td><div class="list-item">{{$device->full_serial}}</div></td>

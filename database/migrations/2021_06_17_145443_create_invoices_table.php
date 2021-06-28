@@ -20,13 +20,13 @@ class CreateInvoicesTable extends Migration
             $table->string('device_serial');
             $table->date('purchase_date');
 
-            $table->boolean('technical_support_chk');
+            $table->boolean('technical_support_chk')->default(false);
             $table->date('technical_support')->nullable();
             
-            $table->boolean('repairing_service_chk');
+            $table->boolean('repairing_service_chk')->default(false);;
             $table->date('repairing_service')->nullable();
             
-            $table->boolean('premium_support_chk');
+            $table->boolean('premium_support_chk')->default(false);;
             $table->date('premium_support')->nullable();
             
             $table->timestamps();
