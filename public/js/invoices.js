@@ -11,18 +11,16 @@ var device_serial = document.getElementById('device_serial'),
     premium_support=document.getElementById('premium_support');
 
 
-
-
 //Technical Support Enable
 technical_support_chk.onclick = function(){
     "use strict";
     if(technical_support_chk.checked){
         technical_support.disabled = false;
-        technical_support_chk.value="Yes";
+        technical_support_chk.value=true;
     }
     else{
         technical_support.disabled = true;
-        technical_support_chk.value="No";
+        technical_support_chk.value=false;
     }
 }
 
@@ -31,11 +29,11 @@ repairing_service_chk.onclick = function(){
     "use strict";
     if(repairing_service_chk.checked){
         repairing_service.disabled = false;
-        repairing_service_chk.value="Yes";
+        repairing_service_chk.value=true;
     }
     else{
         repairing_service.disabled = true;
-        repairing_service_chk.value="No";
+        repairing_service_chk.value=false;
     }
 }
 
@@ -44,11 +42,11 @@ premium_support_chk.onclick = function(){
     "use strict";
     if(premium_support_chk.checked){
         premium_support.disabled = false;
-        premium_support_chk.value="Yes";
+        // premium_support_chk.value=true;
     }
     else{
         premium_support.disabled = true;
-        premium_support_chk.value="No";
+        // premium_support_chk.value=false;
     }
 }
 

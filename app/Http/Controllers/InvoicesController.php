@@ -47,10 +47,13 @@ class InvoicesController extends Controller
         $premium_support_chk = $request->has('premium_support_chk');
         
 
-        $invoice = $request->only('client_id','purchase_date','device_serial','technical_support','repairing_service','premium_support');
-        $invoice['technical_support_chk'] = $request->technical_support_chk;
-        $invoice['repairing_service_chk'] = $request->repairing_service_chk;
-        $invoice['premium_support_chk'] = $request->premium_support_chk;
+        // $invoice = $request->only('client_id','purchase_date','device_serial','technical_support','repairing_service','premium_support', 'technical_support_chk', 'repairing_service_chk', 'premium_support_chk');
+        $invoice = $request->all();
+        // $invoice['technical_support_chk'] = $request->technical_support_chk;
+        // $invoice['repairing_service_chk'] = $request->repairing_service_chk;
+        // $invoice['premium_support_chk'] = $request->premium_support_chk;
+
+
         
         // if($request->has('technical_support')){
         //     $invoice['technical_support_chk'] = 1;
@@ -62,10 +65,10 @@ class InvoicesController extends Controller
         // if($request->has('premium_support')){
         //     $invoice['premium_support_chk'] = 1;
         // }
-        // $invoice = new Invoice($invoice);
-        // $invoice->save();
-        // dd($request);
-        Invoice::create($invoice);
+        $invoice = new Invoice($invoice);
+        $invoice->save();
+        // dd($invoice);
+        // Invoice::create($invoice);
 
         session()->flash('success', 'Invoice added successfully');
         return redirect(route('invoices.index'));
@@ -108,8 +111,7 @@ class InvoicesController extends Controller
         // $device_id = Device::where('full_serial', $request->device_serial)->first()->id;
         // $data['device_id'] = $device_id;
 
-      
-
+    
         $invoice->update($data);
         session()->flash('success', 'Invoice has been updated successfully');
         return redirect(route('invoices.index'));
