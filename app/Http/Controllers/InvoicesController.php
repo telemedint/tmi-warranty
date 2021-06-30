@@ -9,6 +9,7 @@ use App\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Javascript;
+use phpDocumentor\Reflection\Types\Null_;
 
 class InvoicesController extends Controller
 {
@@ -54,20 +55,16 @@ class InvoicesController extends Controller
         // $invoice['premium_support_chk'] = $request->premium_support_chk;
 
 
+        $invoice['technical_support_chk'] = $request->has('technical_support') ? '1' : '0';
+        $invoice['repairing_service_chk'] = $request->has('repairing_service') ? '1' : '0';
+        $invoice['premium_support_chk'] = $request->has('premium_support') ? '1' : '0';
         
-        // if($request->has('technical_support')){
-        //     $invoice['technical_support_chk'] = 1;
-        // }
-        
-        // if($request->has('repairing_service')){
-        //     $invoice['repairing_service_chk'] = 1;
-        // }
-        // if($request->has('premium_support')){
-        //     $invoice['premium_support_chk'] = 1;
-        // }
+        if(!$request->has('premium_support')){
+            $invoice['premium_support'] = Null;
+        }
+        // dd($invoice);
         $invoice = new Invoice($invoice);
         $invoice->save();
-        // dd($invoice);
         // Invoice::create($invoice);
 
         session()->flash('success', 'Invoice added successfully');
@@ -105,11 +102,23 @@ class InvoicesController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        $data = $request->only('client_id', 'device_serial','purchase_date',
-        'technical_support', 'repairing_service','premium_support');
+        $data = $request->all();
         
         // $device_id = Device::where('full_serial', $request->device_serial)->first()->id;
         // $data['device_id'] = $device_id;
+        $invoice['technical_support_chk'] = $request->has('technical_support') ? '1' : '0';
+        $invoice['repairing_service_chk'] = $request->has('repairing_service') ? '1' : '0';
+        $invoice['premium_support_chk'] = $request->has('premium_support') ? '1' : '0';
+        
+        if(!$request->has('technical_support')){
+            $invoice['technical_support'] = Null;
+        }
+        if(!$request->has('repairing_service')){
+            $invoice['repairing_service'] = Null;
+        }
+        if(!$request->has('premium_support')){
+            $invoice['premium_support'] = Null;
+        }
 
     
         $invoice->update($data);

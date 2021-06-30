@@ -16,11 +16,11 @@ technical_support_chk.onclick = function(){
     "use strict";
     if(technical_support_chk.checked){
         technical_support.disabled = false;
-        technical_support_chk.value=true;
+        technical_support_chk.value=1;
     }
     else{
         technical_support.disabled = true;
-        technical_support_chk.value=false;
+        technical_support_chk.value=0;
     }
 }
 
@@ -29,11 +29,11 @@ repairing_service_chk.onclick = function(){
     "use strict";
     if(repairing_service_chk.checked){
         repairing_service.disabled = false;
-        repairing_service_chk.value=true;
+        repairing_service_chk.value=1;
     }
     else{
         repairing_service.disabled = true;
-        repairing_service_chk.value=false;
+        repairing_service_chk.value=0;
     }
 }
 
@@ -42,11 +42,11 @@ premium_support_chk.onclick = function(){
     "use strict";
     if(premium_support_chk.checked){
         premium_support.disabled = false;
-        // premium_support_chk.value=true;
+        premium_support_chk.value=1;
     }
     else{
         premium_support.disabled = true;
-        // premium_support_chk.value=false;
+        premium_support_chk.value=0;
     }
 }
 

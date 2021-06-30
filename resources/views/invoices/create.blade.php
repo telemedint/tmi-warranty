@@ -77,8 +77,10 @@
                             <input type="text" class="form-control" style="text-align: center; font-weight: bold"
                             value="{{App\Device::where('full_serial',$invoice->device_serial)->first()->name}}" >
                         </div>
+                        
                             <img src="{{asset('public/images/devices/'. App\Device::where('full_serial',$invoice->device_serial)->first()->image)}}" 
-                            alt="image" style="width: 50%">
+                            alt="image" style="width: 50%; margin-left: auto; margin-right: auto;">
+                        
                         @endisset
                         
 
@@ -104,7 +106,12 @@
                             
                             <input type="hidden" name="technical_support_chk" value="0" />
                             <input type="checkbox" id="technical_support_chk" name="technical_support_chk" 
-                            class="form-control flx-elem" checked value="1" style="width: 5%;">
+                            class="form-control flx-elem"  value="1" style="width: 5%;"
+                            @if(isset($invoice))
+                                @if ($invoice->technical_support_chk) checked @endif
+                            @else
+                                checked
+                            @endif>
 
                             <input type="date" id="technical_support" name="technical_support"
                             value="{{isset($invoice) ? $invoice->technical_support : date('Y-m-d', strtotime('+1 year'))}}" style="text-align: center;"
@@ -121,7 +128,12 @@
                             
                             <input type="hidden" name="repairing_service_chk" value="0" />
                             <input type="checkbox" id="repairing_service_chk" name="repairing_service_chk"
-                            class="form-control flx-elem" checked value="1"  style="width: 5%;">
+                            class="form-control flx-elem" value="1"  style="width: 5%;"
+                            @if(isset($invoice))
+                                @if ($invoice->repairing_service_chk) checked @endif
+                            @else
+                                checked
+                            @endif>
 
                             <input type="date" id="repairing_service" name="repairing_service"
                             value="{{isset($invoice) ? $invoice->repairing_service : date('Y-m-d', strtotime('+1 year'))}}" style="text-align: center;"
@@ -138,7 +150,10 @@
                             
                             <input type="hidden" name="premium_support_chk" value="0" />
                             <input type="checkbox" id="premium_support_chk" name="premium_support_chk" 
-                            class="form-control flx-elem" value= "1" style="width: 5%;">
+                            class="form-control flx-elem" value= "1" style="width: 5%;"
+                            @isset($invoice)
+                                @if ($invoice->premium_support_chk) checked @endif
+                            @endisset>
 
                             <input type="date" id="premium_support" name="premium_support"
                             disabled value="{{isset($invoice) ? $invoice->premium_support : date('Y-m-d', strtotime('+1 year'))}}" style="text-align: center;"

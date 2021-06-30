@@ -117,11 +117,11 @@ class DevicesController extends Controller
             $destination_path = public_path('images/devices');
             $image = $request->file('image');
             $image_name = $image->getClientOriginalName();
+            File::delete( $destination_path . '/' . $device->image);
             $path = $image->move($destination_path, $image_name);
             
             // Storage::disk('public')->delete($device->image);
             // Storage::delete($destination_path . '/' . $image_name);
-            File::delete( $destination_path . '/' . $device->image);
             
             $data['image'] = $image_name;
         }

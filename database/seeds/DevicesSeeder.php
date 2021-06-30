@@ -17,7 +17,7 @@ class DevicesSeeder extends Seeder
             'full_serial' => '1-213-500',
             'serial_second' => '213',
             'serial_first' => '500',
-            'image' => 'https://www.pexels.com/photo/gray-and-gold-telescope-on-building-901974/',
+            'image' => 'telescope.jpg',
             'category_id' => '1',
         ]);
     }
