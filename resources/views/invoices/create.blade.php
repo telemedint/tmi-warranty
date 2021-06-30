@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('style')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -189,7 +191,13 @@
 @section('script')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('js/invoices.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#client').select2();
+        });
+    </script>
     <script type="text/javascript">
         //Add Image onchange of serial
         $("#device_serial").on('change',function(event){
@@ -220,4 +228,5 @@
             });
         });
     </script>
+    
 @endsection
