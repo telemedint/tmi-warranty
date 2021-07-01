@@ -20,7 +20,8 @@
   <div class="col-md-8">
       <div class="device-serial-form inner-content main-padding">
           <h1 class="bold">
-              Telemed electronic stethoscope 3rd generation
+              {{-- Telemed electronic stethoscope 3rd generation --}}
+              {{$invoice->device->name}}
           </h1>
           <br />
           <div class="row">
