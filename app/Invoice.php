@@ -15,4 +15,8 @@ class Invoice extends Model
     {
         return $this->belongsTo('App\Client');
     }
+
+    public function device(){
+        return $this->belongsTo('App\Device', 'device_serial', 'full_serial');
+    }
 }

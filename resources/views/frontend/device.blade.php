@@ -1,5 +1,12 @@
 @extends('layouts.frontend')
 
+<?php
+    use Illuminate\Support\Facades\Storage;
+    use App\Invoice;
+    use App\Device;
+    use App\Client;
+?>
+
 @section('title') Check Serial @endsection
 
 @section('vendor_css')  
@@ -22,7 +29,8 @@
                       Serial number
                   </p>
                   <h4 class="bold">
-                      TMI-2017120219876
+                      {{-- TMI-2017120219876 --}}
+                      {{$invoice->device_serial}}
                   </h4>
               </div>
               <div class="col-md-4">
@@ -30,7 +38,8 @@
                       Purchase date
                   </p>
                   <h4 class="bold">
-                      23 March 2021
+                      {{-- 23 March 2021 --}}
+                      {{date('d-m-Y', strtotime($invoice->purchase_date))}}
                   </h4>
               </div>
               <div class="col-md-4">
@@ -38,7 +47,8 @@
                       License valid to
                   </p>
                   <h4 class="bold green">
-                      23 March 2022
+                      {{-- 23 March 2022 --}}
+                      {{date('d-m-Y', strtotime($invoice->technical_support))}}
                   </h4>
               </div>
               <div class="col-md-8">
@@ -47,7 +57,8 @@
                       Registered to
                   </p>
                   <h4 class="bold">
-                      Ibrahim Badran Charitable Foundation
+                      {{-- Ibrahim Badran Charitable Foundation --}}
+                      {{$invoice->client->company}}
                   </h4>
               </div>
               <div class="col-md-4">
@@ -56,7 +67,8 @@
                       Branch
                   </p>
                   <h4 class="bold">
-                      Shiekh Zayed City, Giza, Egypt.
+                      {{-- Shiekh Zayed City, Giza, Egypt. --}}
+                      {{$invoice->client->address}}
                   </h4>
               </div>
               <div class="col-md-12">
@@ -102,7 +114,8 @@
   </div>
   <div class="col-md-4 fill-home">
       <div class="padding-for-side-image">
-          <img src="{{ asset('themes/frontend/assets/images/phone.jpg') }}" />
+          {{-- <img src="{{ asset('themes/frontend/assets/images/phone.jpg') }}" /> --}}
+          <img src="{{asset('public/images/devices/' . $invoice->device->image)}}" alt="Device Image"/>
       </div>
   </div>
  

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Device;
+use App\Invoice;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,9 +33,11 @@ class HomeController extends Controller
         return view('frontend.check');
     }
 
-    public function deviceDetails()
+    public function deviceDetails(Request $request)
     {
-        return view('frontend.device');
+        $serial = $request->serial;
+        $invoice = Invoice::where('device_serial', $serial)->first();
+        return view('frontend.device')->with('invoice', $invoice);
     }
 
     public function requestMaintenance()

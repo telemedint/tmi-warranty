@@ -14,5 +14,9 @@ class Device extends Model
     {
         return $this->belongsTo('App\Category');
     }
+
+    public function invoice(){
+        return $this->hasOne('App\Invoice', 'full_serial', 'device_serial');
+    }
     
 }
