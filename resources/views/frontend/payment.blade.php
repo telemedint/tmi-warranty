@@ -35,7 +35,7 @@
                                     </li>
                                     <li>
                                         <i class="fa fa-check"></i>
-                                        First time installation byour experts
+                                        First time installation by our experts
                                     </li>
                                     <li>
                                         <i class="fa fa-check"></i>
