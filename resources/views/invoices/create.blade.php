@@ -51,7 +51,7 @@
 
                             <input type="text" id= "device_serial" name="device_serial" class="form-control" 
                             style="width: 50%; text-align: center;"
-                            @isset($invoice)value="{{$invoice->device_serial}}" @endisset>
+                            @isset($invoice)value="{{$invoice->device->full_serial}}" @endisset>
                         </div>
 
                         {{-- Device Info (Name & Image) --}}
@@ -78,10 +78,10 @@
                                 <h5 style="font-weight: bold">{{__('translation.device_name')}}:</h5>
                             </label>
                             <input type="text" class="form-control" style="text-align: center; font-weight: bold"
-                            value="{{App\Device::where('full_serial',$invoice->device_serial)->first()->name}}" >
+                            value="{{$invoice->device->name}}" >
                         </div>
                         
-                            <img src="{{asset('public/images/devices/'. App\Device::where('full_serial',$invoice->device_serial)->first()->image)}}" 
+                            <img src="{{asset('public/images/devices/'. $invoice->device->image)}}" 
                             alt="image" style="width: 50%; margin-left: auto; margin-right: auto;">
                         
                         @endisset

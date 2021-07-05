@@ -16,7 +16,8 @@ class Device extends Model
     }
 
     public function invoice(){
-        return $this->hasOne('App\Invoice', 'full_serial', 'device_serial');
+        // return $this->hasOne('App\Invoice', 'full_serial', 'device_serial');
+        return $this->hasOne('App\Invoice');
     }
     
 }

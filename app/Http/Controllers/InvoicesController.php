@@ -43,17 +43,14 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        $technical_support_chk = 
-        $repairing_service_chk = $request->has('repairing_service_chk');
-        $premium_support_chk = $request->has('premium_support_chk');
         
-
-        // $invoice = $request->only('client_id','purchase_date','device_serial','technical_support','repairing_service','premium_support', 'technical_support_chk', 'repairing_service_chk', 'premium_support_chk');
         $invoice = $request->all();
+        $device_id = Device::where('full_serial', $request->device_serial)->first()->id;
+        $invoice['device_id'] = $device_id;
+        
         // $invoice['technical_support_chk'] = $request->technical_support_chk;
         // $invoice['repairing_service_chk'] = $request->repairing_service_chk;
         // $invoice['premium_support_chk'] = $request->premium_support_chk;
-
 
         $invoice['technical_support_chk'] = $request->has('technical_support') ? '1' : '0';
         $invoice['repairing_service_chk'] = $request->has('repairing_service') ? '1' : '0';
@@ -62,7 +59,7 @@ class InvoicesController extends Controller
         if(!$request->has('premium_support')){
             $invoice['premium_support'] = Null;
         }
-        // dd($invoice);
+        
         $invoice = new Invoice($invoice);
         $invoice->save();
         // Invoice::create($invoice);
@@ -104,8 +101,9 @@ class InvoicesController extends Controller
     {
         $data = $request->all();
         
-        // $device_id = Device::where('full_serial', $request->device_serial)->first()->id;
-        // $data['device_id'] = $device_id;
+        $device_id = Device::where('full_serial', $request->device_serial)->first()->id;
+        $data['device_id'] = $device_id;
+        
         $invoice['technical_support_chk'] = $request->has('technical_support') ? '1' : '0';
         $invoice['repairing_service_chk'] = $request->has('repairing_service') ? '1' : '0';
         $invoice['premium_support_chk'] = $request->has('premium_support') ? '1' : '0';
@@ -120,7 +118,6 @@ class InvoicesController extends Controller
             $invoice['premium_support'] = Null;
         }
 
-    
         $invoice->update($data);
         session()->flash('success', 'Invoice has been updated successfully');
         return redirect(route('invoices.index'));

@@ -17,7 +17,7 @@ class CreateInvoicesTable extends Migration
             $table->bigIncrements('id');
             
             $table->integer('client_id');
-            $table->string('device_serial');
+            $table->integer('device_id');
             $table->date('purchase_date');
 
             $table->boolean('technical_support_chk')->default(false);
