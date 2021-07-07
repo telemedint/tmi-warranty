@@ -63,7 +63,7 @@
                                         <h5 style="font-weight: bold">{{__('translation.device_name')}}:</h5>
                                     </label>
 
-                                    <label type="text" id= "device_name" name="device_name" class="form-control"
+                                    <label id= "device_name" name="device_name" class="form-control"
                                     style="width: 50%; text-align: center; margin-right: 3%; margin-left: 3%"> </label>
                                 </div>
                                 {{-- Device Image --}}

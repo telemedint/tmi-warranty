@@ -36,7 +36,9 @@
                         </div>
                         <div class="col-md-12">
                             <h1 class="bold">
-                                Telemed electronic stethoscope 3rd generation
+                                {{-- Telemed electronic stethoscope 3rd generation --}}
+                                {{dd($ticket)}}
+                                {{$ticket->device()->name}}
                             </h1>
                         </div>
                         <div class="col-md-3">
@@ -44,7 +46,8 @@
                                 Serial number
                             </p>
                             <h4 class="bold">
-                                TMI-2017120219876
+                                {{-- TMI-2017120219876 --}}
+                                {{$ticket->device->full_serial}}
                             </h4>
                         </div>
                         <div class="col-md-3">
@@ -52,7 +55,8 @@
                                 Purchase date
                             </p>
                             <h4 class="bold">
-                                23 March 2021
+                                {{-- 23 March 2021 --}}
+                                {{date('d-m-Y', strtotime($ticket->device->invoice->purchase_date))}}
                             </h4>
                         </div>
                         <div class="col-md-3">
@@ -60,7 +64,8 @@
                                 License valid to
                             </p>
                             <h4 class="bold green">
-                                23 March 2022
+                                {{-- 23 March 2022 --}}
+                                {{date('d-m-Y', strtotime($ticket->device->invoice->technical_support))}}
                             </h4>
                         </div>
                         <div class="col-md-6">
@@ -69,7 +74,8 @@
                                 Registered to
                             </p>
                             <h4 class="bold">
-                                Ibrahim Badran Charitable Foundation
+                                {{-- Ibrahim Badran Charitable Foundation --}}
+                                {{$ticket->device->invoice->client->company}}
                             </h4>
                         </div>
                         <div class="col-md-6">
@@ -78,7 +84,8 @@
                                 Branch
                             </p>
                             <h4 class="bold">
-                                Shiekh Zayed City, Giza, Egypt.
+                                {{-- Shiekh Zayed City, Giza, Egypt. --}}
+                                {{$ticket->device->invoice->client->address}}
                             </h4>
                         </div>
                     </div>
@@ -86,7 +93,8 @@
             </div>
             <div class="col-md-4 fill-home">
                 <div class="padding-for-side-image">
-                    <img src="{{ asset('themes/frontend/assets/images/phone.jpg') }}" />
+                    {{-- <img src="{{ asset('themes/frontend/assets/images/phone.jpg') }}" /> --}}
+                    <img src="{{asset('public/images/devices/' . $ticket->invoice->device->image)}}" alt="Device Image"/>
                 </div>
             </div>
 @endsection

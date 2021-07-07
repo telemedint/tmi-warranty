@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Session;
 
 Route::get('/', 'HomeController@checkSerial')->name('main-page');
 Route::get('/device-details', 'HomeController@deviceDetails')->name('device-details');
-Route::get('/request-maintenance', 'HomeController@requestMaintenance')->name('request-maintenance');
+Route::get('/request-maintenance/{id}', 'HomeController@requestMaintenance')->name('request-maintenance');
 Route::get('/request-sent', 'HomeController@requestSent')->name('request-sent');
 Route::get('/upgrade-license', 'HomeController@upgradeLicense')->name('upgrade-license');
 Route::get('/payment', 'HomeController@payment')->name('payment');

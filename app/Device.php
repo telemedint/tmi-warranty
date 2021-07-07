@@ -19,5 +19,9 @@ class Device extends Model
         // return $this->hasOne('App\Invoice', 'full_serial', 'device_serial');
         return $this->hasOne('App\Invoice');
     }
+
+    public function tickets(){
+        return $this->hasMany(Ticket::class, 'device_id');
+    }
     
 }

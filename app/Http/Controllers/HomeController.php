@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Device;
 use App\Invoice;
+use App\Ticket;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -36,18 +37,29 @@ class HomeController extends Controller
     public function deviceDetails(Request $request)
     {
         $serial = $request->serial;
-        $invoice = Invoice::where('device_serial', $serial)->first();
-        return view('frontend.device')->with('invoice', $invoice);
+        $device = Device::where('full_serial', $serial)->first();
+        if($device){
+            $invoice = $device->invoice;
+            return view('frontend.device')->with('invoice', $invoice);
+        }else{
+            session()->flash('error',"Couldn 't find the device. Please enter another serial ");
+            return redirect(route('main-page'));
+        }
+        
     }
 
-    public function requestMaintenance()
+    public function requestMaintenance(Request $request, $device_id)
     {
-        return view('frontend.request');
+        $device = Device::find($device_id);
+        return view('frontend.request')->with('device', $device);
     }
 
-    public function requestSent()
+    public function requestSent(Request $request)
     {
-        return view('frontend.sent');
+        $ticket = $request->all();
+        $ticket = new Ticket($ticket);
+        $ticket->save();
+        return view('frontend.sent',['ticket'=> $ticket]);
     }
 
     public function upgradeLicense()

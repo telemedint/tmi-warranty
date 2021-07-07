@@ -30,8 +30,7 @@
                       Serial number
                   </p>
                   <h4 class="bold">
-                      {{-- TMI-2017120219876 --}}
-                      {{$invoice->device_serial}}
+                      {{$invoice->device->full_serial}}
                   </h4>
               </div>
               <div class="col-md-4">
@@ -107,7 +106,7 @@
                   <br />
 
                   <a class="btn outline pull-right" href="{{route('upgrade-license')}}">Upgrade license</a>
-                  <a class="btn pull-right" href="{{route('request-maintenance')}}">Request maintenance</a>
+                  <a class="btn pull-right" href="{{route('request-maintenance',$invoice->device->id)}}">Request maintenance</a>
 
               </div>
           </div>
@@ -116,7 +115,7 @@
   <div class="col-md-4 fill-home">
       <div class="padding-for-side-image">
           {{-- <img src="{{ asset('themes/frontend/assets/images/phone.jpg') }}" /> --}}
-          <img src="{{asset('public/images/devices/' . $invoice->device->image)}}" alt="Device Image"/>
+          {{-- <img src="{{asset('public/images/devices/' . $invoice->device->image)}}" alt="Device Image"/> --}}
       </div>
   </div>
  

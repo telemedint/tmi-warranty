@@ -19,6 +19,9 @@
                     </a>
                 </header>
                 <div class="device-serial-form main-content main-padding">
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger">{{session()->get('error')}}</div>
+                    @endif
                     <h3 class="bold">
                         How to find device or software serial number?
                     </h3>
