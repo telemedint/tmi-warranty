@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('/cpanel/devices','DevicesController')->middleware('check.category');
     Route::resource('/cpanel/categories','CategoriesController');
     Route::resource('/cpanel/invoices','InvoicesController');
+    Route::resource('/cpanel/tickets','TicketsController');
 });
 
 Route::get('locale/{locale}',function($locale){

@@ -8,6 +8,7 @@ return[
     'clients' => 'Clients',
     'categories' => 'Categories',
     'invoices' => 'Invoices',
+    'tickets' => 'Tickets',
     
     'language' => 'Language',
     'arabic' => 'Arabic',
@@ -25,6 +26,7 @@ return[
     'add_device' => 'Add a Device',
     'add_client' => 'Add a Client',
     'add_invoice' => 'Add an Invoice',
+    'add_ticket' => 'Add a Ticket',
 
     'update' => 'Update',
     'submit' => 'Submit',
@@ -40,6 +42,8 @@ return[
     'update_category' => 'Update Category data',
     'new_invoice'=> 'New Invoice',
     'update_invoice' => 'Update Invoice data',
+    'new_ticket'=> 'New Ticket',
+    'update_ticket' => 'Update Ticket data',
     
 
     /*-------------------Client Info-------------------*/
@@ -68,4 +72,11 @@ return[
     'technical_support'=> 'Technical Support',
     'repairing_service'=> 'Repairing Service',
     'premium_support'=> 'Premium Support',
+
+    /*-------------------Ticket Info-------------------*/
+    'applicant_name' => "Applicant's Name",
+    'applicant_phone' => "Applicant's Phone",
+    'request_date' => 'Request Date',
+    'details' => ' Details',
+
     ];

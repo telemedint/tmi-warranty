@@ -7,6 +7,7 @@ return[
     'clients' => 'العملاء',
     'categories' => 'الأقسام',
     'invoices' => 'الفواتير',
+    'tickets' => 'التذاكر',
 
     'language'=>'اللغة',
     'arabic'=>'العربية',
@@ -24,6 +25,7 @@ return[
     'add_device' => 'أضف جهازًا',
     'add_client' => 'أضف عميلًا',
     'add_invoice' => 'أضف فاتورة',
+    'add_ticket' => 'أضف تذكرة',
 
     'update' => 'تحديث',
     'update_client' => 'تحديث بيانات العميل',
@@ -33,6 +35,8 @@ return[
     'update_category' => 'تحديث بيانات القسم',
     'new_invoice'=> 'فاتورة جديدة',
     'update_invoice' => 'تحديث بيانات الفاتورة',
+    'new_ticket'=> 'تذكرة جديدة',
+    'update_ticket' => 'تحديث بيانات التذكرة',
 
     'submit' => 'إنهاء',
     'edit'=> 'تعديل',
@@ -69,4 +73,11 @@ return[
     'technical_support'=> 'الضمان',
     'repairing_service'=> 'خدمة الصيانة',
     'premium_support'=> 'الدعم المتميز',
+
+    /*-------------------Ticket Info-------------------*/
+    'applicant_name' => "اسم مقدم الطلب",
+    'applicant_phone' => "رقم مقدم الطلب",
+    'request_date' => 'تاريخ تقديم الطلب',
+    'details' => ' التفاصيل',
+
     ];

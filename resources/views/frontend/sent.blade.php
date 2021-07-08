@@ -37,8 +37,8 @@
                         <div class="col-md-12">
                             <h1 class="bold">
                                 {{-- Telemed electronic stethoscope 3rd generation --}}
-                                {{dd($ticket)}}
-                                {{$ticket->device()->name}}
+                                {{-- {{dd($ticket)}} --}}
+                                {{$ticket->device->name}}
                             </h1>
                         </div>
                         <div class="col-md-3">
@@ -94,7 +94,7 @@
             <div class="col-md-4 fill-home">
                 <div class="padding-for-side-image">
                     {{-- <img src="{{ asset('themes/frontend/assets/images/phone.jpg') }}" /> --}}
-                    <img src="{{asset('public/images/devices/' . $ticket->invoice->device->image)}}" alt="Device Image"/>
+                    <img src="{{asset('public/images/devices/' . $ticket->device->image)}}" alt="Device Image"/>
                 </div>
             </div>
 @endsection
