@@ -17,7 +17,7 @@
                     <br />
                     <h2 class="green bold upgrade-title">
                         Upgrade your license
-                        <a href="{{route('upgrade-license')}}" style="color: #000;" class="pull-right">
+                        <a href="{{route('upgrade-license', $device->id)}}" style="color: #000;" class="pull-right">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </a>
                     </h2>
@@ -65,11 +65,11 @@
                         </div>
                         <div class="col-md-6 offset-md-1">
                             <h3>
-                                <a href="{{route('upgrade-license')}}" class="bold">
+                                <a href="{{route('upgrade-license', $device->id)}}" class="bold">
                                     <i class="fa fa-long-arrow-left" aria-hidden="true"></i> Payment details
                                 </a>
                             </h3>
-                            <form action="{{route('upgraded-license')}}">
+                            <form action="{{route('upgraded-license', $device->id)}}">
                                 <label class="bold">
                                     Card number
                                 </label>

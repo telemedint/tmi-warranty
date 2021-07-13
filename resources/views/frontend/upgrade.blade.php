@@ -12,7 +12,8 @@
 <div class="col-md-8">
                 <div class="device-serial-form inner-content main-padding">
                     <h1 class="bold">
-                        Telemed electronic stethoscope 3rd generation
+                        {{-- Telemed electronic stethoscope 3rd generation --}}
+                        {{$device->name}}
                     </h1>
                     <br />
                     <h2 class="green bold upgrade-title">
@@ -147,7 +148,7 @@
                             <br />
                             <br />
                             <a class="btn" style="width: 298px !important;display: block;margin: 0 auto;"
-                                href="{{route('payment')}}">Next</a>
+                                href="{{route('payment', $device->id)}}">Next</a>
                         </div>
                     </div>
                 </div>

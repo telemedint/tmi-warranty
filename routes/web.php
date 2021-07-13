@@ -18,8 +18,8 @@ Route::get('/', 'HomeController@checkSerial')->name('main-page');
 Route::get('/device-details', 'HomeController@deviceDetails')->name('device-details');
 Route::get('/request-maintenance/{id}', 'HomeController@requestMaintenance')->name('request-maintenance');
 Route::get('/request-sent', 'HomeController@requestSent')->name('request-sent');
-Route::get('/upgrade-license', 'HomeController@upgradeLicense')->name('upgrade-license');
-Route::get('/payment', 'HomeController@payment')->name('payment');
+Route::get('/upgrade-license/{id}', 'HomeController@upgradeLicense')->name('upgrade-license');
+Route::get('/payment/{id}', 'HomeController@payment')->name('payment');
 Route::get('/upgraded-license', 'HomeController@upgradedLicense')->name('upgraded-license');
 
 Route::post('/cpanel/invoices/create/', 'InvoicesController@getSerialInfo')->name('serial-info-ajax');

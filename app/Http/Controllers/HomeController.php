@@ -48,7 +48,7 @@ class HomeController extends Controller
         
     }
 
-    public function requestMaintenance(Request $request, $device_id)
+    public function requestMaintenance($device_id)
     {
         $device = Device::find($device_id);
         return view('frontend.request')->with('device', $device);
@@ -62,14 +62,16 @@ class HomeController extends Controller
         return view('frontend.sent',['ticket'=> $ticket]);
     }
 
-    public function upgradeLicense()
+    public function upgradeLicense($device_id)
     {
-        return view('frontend.upgrade');
+        $device = Device::find($device_id);
+        return view('frontend.upgrade')->with('device', $device);
     }
 
-     public function payment()
+     public function payment($device_id)
     {
-        return view('frontend.payment');
+        $device = Device::find($device_id);
+        return view('frontend.payment')->with('device', $device);
     }
 
     public function upgradedLicense()
