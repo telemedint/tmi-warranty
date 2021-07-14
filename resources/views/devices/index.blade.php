@@ -59,12 +59,18 @@ use App\Category;
                     </div>
 
                     <div class="card-body">
-                        <!-- The Modal -->
+                        @if (session()->has('success'))
+                            <div class="alert alert-success">{{session()->get('success')}}</div>
+                            <div class="alert alert-warning">
+                                <img src="{{'data:image/png;base64,' . DNS1D::getBarcodePNG(session()->get('serial'), "C128B")}}" alt="barcode"/>
+                            </div>
+                        @endif
+                        <!-- Barcode Modal -->
                         <div id="myModal" class="modal" style="border: solid;">
                             <!-- Modal content -->
                             <div class="modal-content">
                                 <span class="close">&times;</span>
-                                <center><p id="BarCode">Some text in the Modal..</p></center>
+                                <p id="BarCode" style="margin-right: auto; margin-left: auto">Some text in the Modal..</p>
                             </div>
                         </div>
 

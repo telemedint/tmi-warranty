@@ -57,22 +57,11 @@ class DevicesController extends Controller
         $category_id = Category::where('serial', $request->category_serial)->first()->id;
         $device['category_id'] = $category_id;
         
-        
-        // Device::create($device);
         $device = new Device($device);
         $device->save();
 
-        // $device = Device::create([
-        //     'name' => $request->name,
-        //     'full_serial' => $request->full_serial,
-        //     'serial_second' => $request->serial_second,
-        //     'serial_first' => $request->serial_first,
-        //     'image' => $request->image->store('imges', 'public'),
-        //     'category_id' => Category::where('serial', $request->category_serial)->first()->id,
-        // ]);
-        
-
         session()->flash('success', 'device added successfully');
+        session()->flash('serial', $device->full_serial);
         return redirect(route('devices.index'));
     }
 
