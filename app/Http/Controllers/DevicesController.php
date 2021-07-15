@@ -71,10 +71,14 @@ class DevicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($serial)
+    public function show($id)
     {
+        
+    }
+
+    public function print($serial){
         // $barcode = DNS1D::getBarcodePNG($serial, "C128B");
-        return view('devices.show', ['serial' => $serial]);
+        return view('devices.print', ['serial' => $serial]);
     }
 
     /**

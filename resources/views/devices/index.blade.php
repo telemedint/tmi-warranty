@@ -75,7 +75,7 @@ use App\Category;
                                             <button id="{{ 'barcode' . $device->id }}" data-serial="{{$device->full_serial}}"
                                                 value="{{ DNS1D::getBarcodePNG($device->full_serial, "C128B") }}"
                                                 class="barcode btn btn-secondary btn-sm float-right ml-2">Barcode</button>
-                                            <a href="{{ route('devices.show', $device->full_serial) }}"
+                                            <a href="{{ route('devices.print', $device->full_serial) }}"
                                                 class="btn btn-warning btn-sm float-right ml-2">Barcode2</a>
                                         </td>
                                     </tr>
