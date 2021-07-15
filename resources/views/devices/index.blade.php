@@ -6,44 +6,6 @@ use App\Category;
 ?>
 @section('style')
     <style>
-        /* The Modal (background) */
-        .modal {
-            display: none; /*Hidden by default*/
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0); /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
     </style>
 @endsection
 
@@ -65,14 +27,12 @@ use App\Category;
                                 <img src="{{'data:image/png;base64,' . DNS1D::getBarcodePNG(session()->get('serial'), "C128B")}}" alt="barcode"/>
                             </div>
                         @endif
-                        <!-- Barcode Modal -->
-                        <div id="myModal" class="modal" style="border: solid;">
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p id="BarCode" style="margin-right: auto; margin-left: auto">Some text in the Modal..</p>
-                            </div>
+                        <!-- Barcode -->
+                        <div id="Barcode" style="display:none;">
+                            <p id="BarcodeImg" style=" margin-right: auto; margin-left: auto">Barcode Image</p>
+                            <p id="BarcodeSerial" style=" margin-right: auto; margin-left: auto">Barcode Serial</p>
                         </div>
+                    
 
                         @if ($devices->count() > 0)
                             <table class="table">
@@ -112,15 +72,13 @@ use App\Category;
                                             </form>
                                             <a href="{{ route('devices.edit', $device->id) }}"
                                                 class="btn btn-primary btn-sm float-right ml-2">{{ __('translation.edit') }}</a>
-                                            <button id="{{ 'barcode' . $device->id }}"
+                                            <button id="{{ 'barcode' . $device->id }}" data-serial="{{$device->full_serial}}"
                                                 value="{{ DNS1D::getBarcodePNG($device->full_serial, "C128B") }}"
                                                 class="barcode btn btn-secondary btn-sm float-right">Barcode</button>
                                         </td>
                                     </tr>
                                 @endforeach
                             </table>
-
-
 
                             <div class="row justify-content-center">
                                 {{ $devices->links() }}
@@ -139,47 +97,34 @@ use App\Category;
 
 @section('script')
     <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
+        
         $(".barcode").on('click', function(event) {
-            modal.style.display = "block"; // When the button is clicked, open the modal
             let barcode = event.target.value;
             let barcodeImg = '<img src="data:image/png;base64,' + barcode + '" alt="barcode"   />';
-            $("#BarCode").html(barcodeImg);
-            setTimeout(printBarcode, 2000);
+            $("#BarcodeImg").html(barcodeImg);
+
+            let serial = event.target.dataset.serial;
+            $("#BarcodeSerial").html(serial);
+
+            setTimeout(printBarcode, 1000);
         });
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
 
         function printBarcode() {
             var w = window.open();
             var headers =  $("#headers").html();
-            var field= $("#BarCode").html();
-            // var field2= $("#field2").html();
+            var field= $("#BarcodeImg").html();
+            var field2= $("#BarcodeSerial").html();
 
             var html = "<!DOCTYPE HTML>";
             html += '<html lang="en-us">';
             html += '<head><style></style></head>';
             html += "<body>";
 
-            //check to see if they are null so "undefined" doesnt print on the page. <br>s optional, just to give space
+            //check to see if they are null so "undefined" doesnt print on the page.
             if(headers != null) html += headers + "<br/><br/>";
             if(field != null) html += field + "<br/><br/>";
-            // if(field2 != null) html += field2 + "<br/><br/>";
+            if(field2 != null) html += field2 + "<br/><br/>";
 
             html += "</body>";
             w.document.write(html);
