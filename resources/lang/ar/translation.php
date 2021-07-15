@@ -41,6 +41,7 @@ return[
     'submit' => 'إنهاء',
     'edit'=> 'تعديل',
     'delete'=> 'حذف',
+    'print' => 'طباعة',
 
     //Form Labels
     'new_device'=> 'جهاز جديد',
@@ -59,6 +60,8 @@ return[
     'category'=>'القسم',
     'serial1'=>'أدخل الرقم التسلسلي الأول',
     'serial2'=>'الرقم التسلسلي الثاني',
+    'barcode' => 'الباركود',
+    'barcode_and_serial'=> 'الباركود والرقم التسلسلي',
 
     //Category
     'code'=> 'الكود',

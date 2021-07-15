@@ -32,6 +32,7 @@ return[
     'submit' => 'Submit',
     'edit'=> 'Edit',
     'delete'=> 'Delete',
+    'print' => 'Print',
 
     /*-------------------Form Labels-------------------*/
     'new_client'=> 'New Client',
@@ -59,6 +60,8 @@ return[
     'category'=>'Category',
     'serial1'=>'Enter first serial number',
     'serial2'=>'Enter second serial number',
+    'barcode' => 'Barcode',
+    'barcode_and_serial'=> 'Barcode and Serial',
 
     /*-------------------Category Info-------------------*/
     'code'=> 'Code',

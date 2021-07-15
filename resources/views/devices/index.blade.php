@@ -74,7 +74,9 @@ use App\Category;
                                                 class="btn btn-primary btn-sm float-right ml-2">{{ __('translation.edit') }}</a>
                                             <button id="{{ 'barcode' . $device->id }}" data-serial="{{$device->full_serial}}"
                                                 value="{{ DNS1D::getBarcodePNG($device->full_serial, "C128B") }}"
-                                                class="barcode btn btn-secondary btn-sm float-right">Barcode</button>
+                                                class="barcode btn btn-secondary btn-sm float-right ml-2">Barcode</button>
+                                            <a href="{{ route('devices.show', $device->full_serial) }}"
+                                                class="btn btn-warning btn-sm float-right ml-2">Barcode2</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -106,12 +108,12 @@ use App\Category;
             let serial = event.target.dataset.serial;
             $("#BarcodeSerial").html(serial);
 
-            setTimeout(printBarcode, 1000);
+            printBarcode();
         });
 
 
         function printBarcode() {
-            var w = window.open();
+            
             var headers =  $("#headers").html();
             var field= $("#BarcodeImg").html();
             var field2= $("#BarcodeSerial").html();
@@ -127,9 +129,11 @@ use App\Category;
             if(field2 != null) html += field2 + "<br/><br/>";
 
             html += "</body>";
+            
+            var w = window.open();
             w.document.write(html);
-            w.window.print();
             w.document.close();
+            w.window.print();
         }
     </script>
 @endsection
