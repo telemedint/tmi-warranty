@@ -21,6 +21,7 @@
                                 <th>{{__('translation.applicant_phone')}}</th>
                                 <th>{{__('translation.details')}}</th>
                                 <th>{{__('translation.request_date')}}</th>
+                                <th>{{__('translation.status')}}</th>
                             </tr>
                             @foreach ($tickets as $ticket)
                                 <tr>
@@ -28,15 +29,21 @@
                                     <td><div class="list-item">{{$ticket->applicant_phone}}</div></td>
                                     <td><div class="list-item">{{$ticket->details}}</div></td>
                                     <td><div class="list-item">{{$ticket->created_at}}</div></td>
+                                    <td><div class="list-item">{{boolval($ticket->status)? 'Finished':'Open'}}</div></td>
                                     <td>
-                                        <form class="float-right" action="{{route('tickets.destroy', $ticket->id)}}" 
+                                        <a href={{route('tickets.complete', $ticket->id)}} class='btn'
+                                            style="color: {{boolval($ticket->status) ? '#27e024' : '#505250'}};">
+                                                Finish
+                                            </a>
+            
+                                        {{-- <form class="float-right" action="{{route('tickets.destroy', $ticket->id)}}" 
                                         method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm ml-2" onclick="return confirm('Are you sure?')">
                                                 {{__('translation.delete')}}
                                             </button>
-                                        </form>
+                                        </form> --}}
                                         {{-- <a href="{{route('tickets.edit',$ticket->id)}}" class="btn btn-primary btn-sm float-right">{{__('translation.edit')}}</a> --}}
                                     </td>
                                 </tr>

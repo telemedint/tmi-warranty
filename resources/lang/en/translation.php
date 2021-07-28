@@ -81,5 +81,8 @@ return[
     'applicant_phone' => "Applicant's Phone",
     'request_date' => 'Request Date',
     'details' => ' Details',
+    'status' => ' Status',
+    'open' => 'Open',
+    'finished' => 'Finished',
 
     ];

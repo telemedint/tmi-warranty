@@ -82,5 +82,8 @@ return[
     'applicant_phone' => "رقم مقدم الطلب",
     'request_date' => 'تاريخ تقديم الطلب',
     'details' => ' التفاصيل',
+    'status' => ' الحالة',
+    'open' => 'مفتوحة',
+    'finished' => 'مكتملة',
 
     ];

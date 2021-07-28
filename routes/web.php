@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function(){
     Route::resource('/cpanel/categories','CategoriesController');
     Route::resource('/cpanel/invoices','InvoicesController');
     Route::resource('/cpanel/tickets','TicketsController');
+    Route::post('/cpanel/tickets/{ticket}/{status}', 'TicketsController@updateStatus')->name('tickets.updateStatus');
+    Route::get("/cpanel/tickets/{ticket}/complete","TicketsController@complete")->name('tickets.complete');
 });
 
 Route::get('locale/{locale}',function($locale){
@@ -43,3 +45,5 @@ Route::get('locale/{locale}',function($locale){
     
     })
     ->name('switchLan');
+
+    

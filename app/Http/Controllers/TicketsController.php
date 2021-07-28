@@ -73,6 +73,13 @@ class TicketsController extends Controller
         //
     }
 
+    public function complete(Ticket $ticket){
+        $ticket->status = true;
+        $ticket->save();
+        session()-> flash('success', 'Good job, continue hardworking');
+        return redirect(route('tickets.index'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

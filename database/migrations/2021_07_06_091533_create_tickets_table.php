@@ -18,6 +18,7 @@ class CreateTicketsTable extends Migration
             $table->string('applicant_name');
             $table->string('applicant_phone');
             $table->string('details')->nullable();
+            $table->boolean('status')->default(false);
             $table->integer('device_id');
             $table->timestamps();
         });
