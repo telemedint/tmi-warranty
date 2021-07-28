@@ -76,11 +76,6 @@ class DevicesController extends Controller
         
     }
 
-    public function print($serial){
-        // $barcode = DNS1D::getBarcodePNG($serial, "C128B");
-        return view('devices.print', ['serial' => $serial]);
-    }
-
     /**
      * Show the form for editing the specified resource.
      *

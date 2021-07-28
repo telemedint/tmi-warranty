@@ -33,7 +33,6 @@ Route::middleware('auth')->group(function(){
     Route::resource('/cpanel/categories','CategoriesController');
     Route::resource('/cpanel/invoices','InvoicesController');
     Route::resource('/cpanel/tickets','TicketsController');
-    Route::get('/cpanel/devices/print/{serial}', 'DevicesController@print')->name('devices.print');
 });
 
 Route::get('locale/{locale}',function($locale){
