@@ -68,9 +68,16 @@ class TicketsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        
+    }
+
+    public function updateStatus(Request $request){
+        $ticket = Ticket::find($request->id);
+        $ticket->status = $request->status;
+        $ticket->save();
+        return response()->json(['status'=>$ticket->status, 'id'=> $ticket->id]);
     }
 
     public function complete(Ticket $ticket){
