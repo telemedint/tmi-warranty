@@ -23,6 +23,7 @@ Route::get('/payment/{id}', 'HomeController@payment')->name('payment');
 Route::get('/upgraded-license', 'HomeController@upgradedLicense')->name('upgraded-license');
 
 Route::post('/cpanel/invoices/create/', 'InvoicesController@getSerialInfo')->name('serial-info-ajax');
+Route::post('/cpanel/devices/create/', 'DevicesController@getDevicePhoto')->name('device-photo-ajax');
 
 Auth::routes(['register'=>false]);
 
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('/cpanel/categories','CategoriesController');
     Route::resource('/cpanel/invoices','InvoicesController');
     Route::resource('/cpanel/tickets','TicketsController');
+    Route::resource('/cpanel/photos','PhotosController');
     Route::post('/cpanel/tickets/', 'TicketsController@updateStatus')->name('tickets.updateStatus');
 });
 

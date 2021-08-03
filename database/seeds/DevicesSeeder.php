@@ -19,6 +19,7 @@ class DevicesSeeder extends Seeder
             'serial_first' => '500',
             'image' => 'telescope.jpg',
             'category_id' => '1',
+            'photo_id' => '1',
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Device;
+use App\Photo;
 use App\Http\Requests\DeviceRequest;
 use App\Http\Requests\UpdateDeviceRequest;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class DevicesController extends Controller
      */
     public function create()
     {
-        return view('devices.create', ['categories' => Category::all()]);
+        return view('devices.create', ['categories' => Category::all(), 'photos'=>Photo::all()]);
     }
 
     /**
@@ -52,6 +53,10 @@ class DevicesController extends Controller
             //Storage::disk('public')->put('images/devices/', $image);
             $path = $image->move($destination_path, $image_name);
             $device['image'] = $image_name;
+
+            $photo = new Photo(['name'=> $image_name, 'path'=>$path]);
+            $photo->save();
+            $device['photo_id']= $photo->id;
         }
         
         $category_id = Category::where('serial', $request->category_serial)->first()->id;
@@ -84,7 +89,7 @@ class DevicesController extends Controller
      */
     public function edit(Device $device)
     {
-        return view('devices.create', ['device' => $device, 'categories' => Category::all()]);
+        return view('devices.create', ['device' => $device, 'categories' => Category::all(), 'photos'=>Photo::all()]);
     }
 
     /**
@@ -96,25 +101,25 @@ class DevicesController extends Controller
      */
     public function update(UpdateDeviceRequest $request, Device $device)
     {
-        $data = $request->only('name', 'full_serial','serial_first','serial_second');
+        $data = $request->all();
         
         $category_id = Category::where('serial', $request->category_serial)->first()->id;
         $data['category_id'] = $category_id;
+        $data['image'] = Photo::find($request->photo_id)->name;
         
         if ($request->hasFile('image')) {
             // $image = $request->image->store('imges', 'public');
             $destination_path = public_path('images/devices');
             $image = $request->file('image');
             $image_name = $image->getClientOriginalName();
-            File::delete( $destination_path . '/' . $device->image);
             $path = $image->move($destination_path, $image_name);
-            
-            // Storage::disk('public')->delete($device->image);
-            // Storage::delete($destination_path . '/' . $image_name);
-            
             $data['image'] = $image_name;
-        }
 
+            $photo = new Photo(['name'=> $image_name, 'path'=>$path]);
+            $photo->save();
+            $data['photo_id']= $photo->id;
+        }
+        
         $device->update($data);
         session()->flash('success', 'Device has been updated successfully');
         return redirect(route('devices.index'));
@@ -128,10 +133,15 @@ class DevicesController extends Controller
      */
     public function destroy(Device $device)
     {
-        $destination_path = public_path('images/devices');
         // Storage::disk('public')->delete('/images/devices/' . $device->image);
-        File::delete( $destination_path . '/' . $device->image);
         $device->delete();
         return redirect(route('devices.index'));
+    }
+
+    public function getDevicePhoto(Request $request)
+    {
+        // $device_photo = Photo::where('id',$request->photo_id)->first();
+        $device_photo = Photo::find($request->photo_id);
+        return response()->json(['device_photo'=>asset('public/images/devices/'. $device_photo->name)]);
     }
 }

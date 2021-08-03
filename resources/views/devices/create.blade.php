@@ -117,6 +117,28 @@
                             @endisset
                             
                         </div>
+
+                        {{-- Photo select from uploadded photos --}}
+                        <div class="form-group" style="display: flex;">
+                            <label for="photo_id" class="text-monospace" style="width: 30%;">
+                                <h5 style="font-weight: bold">{{__('translation.select_photo')}}:</h5>
+                            </label>
+
+                            <select  id="photo"  name="photo_id" class="form-control" style="width: 40%">
+                                <option disabled selected value> -- select Photo -- </option>
+                                @foreach($photos as $photo)
+                                    <option value="{{$photo->id}}" class="form-control custom-select"
+                                        @isset($device) 
+                                            @if ($photo->id == $device->photo_id) selected @endif 
+                                        @endisset>
+                                            {{$photo->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            {{-- Device Photo --}}
+                            <img src="" id="device_photo"  alt="Device Photo" style="width: 25%; display: none;" class="justify-content-center">
+                        </div>
                             
                         
                         
@@ -148,5 +170,44 @@
 @section('script')
 
     <script src="{{ asset('js/devices.js') }}"></script>
+
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#photo0').select2();
+        });
+    </script>
+    <script type="text/javascript">
+        //Add Image onchange of serial
+        $("#photo").on('change',function(event){
+            event.preventDefault();
+
+            let photo_id = $("#photo").val();
+            
+            let _token   = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                url: "{{ route('device-photo-ajax') }}",
+                type:"POST",
+                data:{
+                    photo_id: photo_id,
+                    _token: _token
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response) {
+                        $('#device_photo').show();
+                        // $('#device_name').html(response.device_name);
+                        $('#device_photo').attr("src",response.device_photo);
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    </script>
+    
 
 @endsection

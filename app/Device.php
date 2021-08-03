@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Device extends Model
 {
     protected $fillable = [
-        'name', 'full_serial', 'serial_first', 'serial_second', 'image', 'category_id',
+        'name', 'full_serial', 'serial_first', 'serial_second', 'image', 'category_id', 'photo_id',
     ];
 
     public function category()
@@ -22,6 +22,10 @@ class Device extends Model
 
     public function tickets(){
         return $this->hasMany(Ticket::class, 'device_id');
+    }
+
+    public function photo(){
+        return $this->belongsTo(Photo::class);
     }
     
 }

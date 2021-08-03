@@ -1,7 +1,7 @@
 <?php
 
 return[
-    //Navbar
+    /*-------------------Navbar-------------------*/
     'title' => 'Laravel',
     'devices' => 'Devices',
     'client' => 'Client',
@@ -9,12 +9,13 @@ return[
     'categories' => 'Categories',
     'invoices' => 'Invoices',
     'tickets' => 'Tickets',
+    'photos' => 'Photos',
     
     'language' => 'Language',
     'arabic' => 'Arabic',
     'english' => 'English',
 
-    //Login
+    /*-------------------Login-------------------*/
     'password'=>'Password',
     'remember'=>'Remember Me',
     'login'=>'Login',
@@ -27,6 +28,7 @@ return[
     'add_client' => 'Add a Client',
     'add_invoice' => 'Add an Invoice',
     'add_ticket' => 'Add a Ticket',
+    'add_photo' => 'Add a Photo',
 
     'update' => 'Update',
     'submit' => 'Submit',
@@ -36,16 +38,18 @@ return[
 
     /*-------------------Form Labels-------------------*/
     'new_client'=> 'New Client',
-    'update_device' => 'Update Device info',
-    'new_device'=> 'New Device',
     'update_client' => 'Update Client data',
+    'new_device'=> 'New Device',
+    'update_device' => 'Update Device info',
     'new_category'=> 'New Category',
     'update_category' => 'Update Category data',
     'new_invoice'=> 'New Invoice',
     'update_invoice' => 'Update Invoice data',
     'new_ticket'=> 'New Ticket',
     'update_ticket' => 'Update Ticket data',
-    
+    'new_photo'=> 'New Photo',
+    'update_photo' => 'Update Photo data',
+    'select_photo'=> 'Select a Photo',
 
     /*-------------------Client Info-------------------*/
     'name' => 'Name',
@@ -84,5 +88,9 @@ return[
     'status' => ' Status',
     'open' => 'Open',
     'finished' => 'Finished',
+
+    /*-------------------Photo Info-------------------*/
+    'path'=> 'Path',
+    
 
     ];

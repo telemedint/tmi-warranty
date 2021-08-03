@@ -1,35 +1,44 @@
 <?php
 
 return[
-    //Navbar
+    /*-------------------Navbar-------------------*/
     'title' => 'لارافل',
     'devices' => 'الأجهزة',
     'clients' => 'العملاء',
     'categories' => 'الأقسام',
     'invoices' => 'الفواتير',
     'tickets' => 'التذاكر',
+    'photos' => 'الصور',
 
     'language'=>'اللغة',
     'arabic'=>'العربية',
     'english'=>'الإنجليزية',
 
-    //Login
+    /*-------------------Login-------------------*/
     'password'=>'كلمة السر',
     'remember'=>'تذكرني',
     'login'=>'تسجيل الدخول',
     'forgot_pass'=>'هل نسيت كلمة السر ؟',
 
-    //Buttons 
+    /*-------------------Buttons-------------------*/
     'add' => 'أضف',
     'add_category' => 'أضف قسم جديد',
     'add_device' => 'أضف جهازًا',
     'add_client' => 'أضف عميلًا',
     'add_invoice' => 'أضف فاتورة',
     'add_ticket' => 'أضف تذكرة',
+    'add_photo' => 'أضف صورة',
 
     'update' => 'تحديث',
-    'update_client' => 'تحديث بيانات العميل',
+    'submit' => 'إنهاء',
+    'edit'=> 'تعديل',
+    'delete'=> 'حذف',
+    'print' => 'طباعة',
+
+    /*-------------------Form Labels-------------------*/
     'new_client'=> 'عميل جديد',
+    'update_client' => 'تحديث بيانات العميل',
+    'new_device'=> 'جهاز جديد',
     'update_device' => 'تحديث بيانات الجهاز',
     'new_category'=> 'قسم جديد',
     'update_category' => 'تحديث بيانات القسم',
@@ -37,24 +46,19 @@ return[
     'update_invoice' => 'تحديث بيانات الفاتورة',
     'new_ticket'=> 'تذكرة جديدة',
     'update_ticket' => 'تحديث بيانات التذكرة',
+    'new_photo'=> 'صورة جديدة',
+    'update_photo' => 'تحديث بيانات الصورة',
+    'select_photo'=> 'اختر صورة',
 
-    'submit' => 'إنهاء',
-    'edit'=> 'تعديل',
-    'delete'=> 'حذف',
-    'print' => 'طباعة',
 
-    //Form Labels
-    'new_device'=> 'جهاز جديد',
-    
-
-    // Client Info
+    /*-------------------Client Info-------------------*/
     'name' => 'الاسم',
     'company' => 'الشركة',
     'email' => ' الإيميل',
     'phone' => ' الهاتف المحمول',
     'address' => 'العنوان',
 
-    //Device Info
+    /*-------------------Device Info-------------------*/
     'image'=>'الصورة',
     'serial'=> 'الرقم التسللي',
     'category'=>'القسم',
@@ -63,7 +67,7 @@ return[
     'barcode' => 'الباركود',
     'barcode_and_serial'=> 'الباركود والرقم التسلسلي',
 
-    //Category
+    /*-------------------Category Info-------------------*/
     'code'=> 'الكود',
 
     /*-------------------Invoice Info-------------------*/
@@ -85,5 +89,8 @@ return[
     'status' => ' الحالة',
     'open' => 'مفتوحة',
     'finished' => 'مكتملة',
+
+    /*-------------------Photo Info-------------------*/
+    'path'=> 'المسار',
 
     ];
