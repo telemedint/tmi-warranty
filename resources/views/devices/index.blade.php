@@ -41,6 +41,7 @@ use App\Category;
                                     <th>{{ __('translation.name') }}</th>
                                     <th>{{ __('translation.serial') }}</th>
                                     <th>{{ __('translation.category') }}</th>
+                                    <th>{{ __('translation.stored_at') }}</th>
                                 </tr>
                                 @foreach ($devices as $device)
                                     <tr>
@@ -62,6 +63,7 @@ use App\Category;
                                                 @endif
                                             </div>
                                         </td>
+                                        <td><div class="list-item">{{$device->stored_at}}</div></td>
                                         <td>
                                             <form class="float-right" action="{{ route('devices.destroy', $device->id) }}"
                                                 method="POST">

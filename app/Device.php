@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Device extends Model
 {
     protected $fillable = [
-        'name', 'full_serial', 'serial_first', 'serial_second', 'image', 'category_id', 'photo_id',
+        'name', 'full_serial', 'serial_first', 'serial_second', 'image', 'stored_at', 'category_id', 'photo_id',
     ];
 
     public function category()

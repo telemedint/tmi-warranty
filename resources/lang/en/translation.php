@@ -66,6 +66,7 @@ return[
     'serial2'=>'Enter second serial number',
     'barcode' => 'Barcode',
     'barcode_and_serial'=> 'Barcode and Serial',
+    'stored_at' => 'Stored at',
 
     /*-------------------Category Info-------------------*/
     'code'=> 'Code',

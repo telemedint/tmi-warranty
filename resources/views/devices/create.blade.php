@@ -124,7 +124,7 @@
                                 <h5 style="font-weight: bold">{{__('translation.select_photo')}}:</h5>
                             </label>
 
-                            <select  id="photo"  name="photo_id" class="form-control" style="width: 40%">
+                            <select  id="photo"  name="photo_id" class="form-control" style="width: 40%;">
                                 <option disabled selected value> -- select Photo -- </option>
                                 @foreach($photos as $photo)
                                     <option value="{{$photo->id}}" class="form-control custom-select"
@@ -138,6 +138,19 @@
 
                             {{-- Device Photo --}}
                             <img src="" id="device_photo"  alt="Device Photo" style="width: 25%; display: none;" class="justify-content-center">
+                        </div>
+
+                        {{-- Storing Date --}}
+                        <div class="stored_at mt-4" style="display: flex;">
+                            
+                            <label for="stored_at" class="flx-elem text-monospace">
+                                <h5 style="font-weight: bold"> {{__('translation.stored_at')}}:</h5>
+                            </label>
+                        
+                            <input type="date" id="stored_at" name="stored_at"
+                            value="{{isset($device) ? $device->stored_at : date('Y-m-d')}}" style="text-align: center;"
+                            class="form-control flx-elem @error('stored_at') is-invalid @enderror">
+
                         </div>
                             
                         
