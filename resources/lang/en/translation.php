@@ -67,11 +67,14 @@ return[
     'barcode' => 'Barcode',
     'barcode_and_serial'=> 'Barcode and Serial',
     'stored_at' => 'Stored at',
+    'no_invoice_message'=> 'This device has no invoice; it is still at store.',
 
     /*-------------------Category Info-------------------*/
     'code'=> 'Code',
+    'options'=> 'Options',
 
     /*-------------------Invoice Info-------------------*/
+    'invoice_info'=> 'Invoice Info',
     'client_name'=> 'Client Name',
     'device_serial' => 'Device Serial',
     'device_name' => 'Device Name',
@@ -80,6 +83,9 @@ return[
     'technical_support'=> 'Technical Support',
     'repairing_service'=> 'Repairing Service',
     'premium_support'=> 'Premium Support',
+
+    'not_available'=> 'Not available',
+    
 
     /*-------------------Ticket Info-------------------*/
     'applicant_name' => "Applicant's Name",

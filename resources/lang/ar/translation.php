@@ -67,12 +67,14 @@ return[
     'barcode' => 'الباركود',
     'barcode_and_serial'=> 'الباركود والرقم التسلسلي',
     'stored_at' => 'تاريخ الإضافة',
+    'no_invoice_message'=> 'هذا الجهاز ليس لديه فاتورة؛ الجهاز لا يزال في المخزن',
 
     /*-------------------Category Info-------------------*/
     'code'=> 'الكود',
+    'options'=> 'الخيارات',
 
     /*-------------------Invoice Info-------------------*/
-    
+    'invoice_info'=> 'بيانات الفاتورة',
     'client_name'=> 'اسم العميل',
     'device_serial' => 'الرقم التسلسلي للجهاز',
     'device_name' => 'اسم الجهاز',
@@ -81,6 +83,7 @@ return[
     'technical_support'=> 'الضمان',
     'repairing_service'=> 'خدمة الصيانة',
     'premium_support'=> 'الدعم المتميز',
+    'not_available'=> 'لا يوجد',
 
     /*-------------------Ticket Info-------------------*/
     'applicant_name' => "اسم مقدم الطلب",

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Device;
 use App\Photo;
+use App\Client;
 use App\Http\Requests\DeviceRequest;
 use App\Http\Requests\UpdateDeviceRequest;
 use Illuminate\Http\Request;
@@ -143,5 +144,17 @@ class DevicesController extends Controller
         // $device_photo = Photo::where('id',$request->photo_id)->first();
         $device_photo = Photo::find($request->photo_id);
         return response()->json(['device_photo'=>asset('public/images/devices/'. $device_photo->name)]);
+    }
+
+    public function getInvoiceInfo(Request $request)
+    {
+        
+        $id = $request->id;
+        $device = Device::find($id);
+        $invoice = $device->invoice;
+        $client = Client::find($invoice->client_id);
+        $device_name = $device->name;
+        $not_available = __('translation.not_available');
+        return response()->json(['invoice'=>$invoice, 'client'=>$client, 'device_name'=>$device_name, 'not_available'=>$not_available]);
     }
 }

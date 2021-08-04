@@ -24,6 +24,7 @@ Route::get('/upgraded-license', 'HomeController@upgradedLicense')->name('upgrade
 
 Route::post('/cpanel/invoices/create/', 'InvoicesController@getSerialInfo')->name('serial-info-ajax');
 Route::post('/cpanel/devices/create/', 'DevicesController@getDevicePhoto')->name('device-photo-ajax');
+Route::post('/cpanel/devices/index/', 'DevicesController@getInvoiceInfo')->name('invoice-info-ajax');
 
 Auth::routes(['register'=>false]);
 

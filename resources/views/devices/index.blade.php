@@ -6,6 +6,9 @@ use App\Category;
 ?>
 @section('style')
     <style>
+        .device-name:hover {
+            color:#ccc42b;
+        }
     </style>
 @endsection
 
@@ -23,9 +26,6 @@ use App\Category;
                     <div class="card-body">
                         @if (session()->has('success'))
                             <div class="alert alert-success">{{session()->get('success')}}</div>
-                            <div class="alert alert-warning">
-                                <img src="{{'data:image/png;base64,' . DNS1D::getBarcodePNG(session()->get('serial'), "C128B")}}" alt="barcode"/>
-                            </div>
                         @endif
                         <!-- Barcode -->
                         <div id="Barcode" style="display:none;">
@@ -39,8 +39,8 @@ use App\Category;
                                 <tr>
                                     <th>{{ __('translation.image') }}</th>
                                     <th>{{ __('translation.name') }}</th>
-                                    <th>{{ __('translation.serial') }}</th>
                                     <th>{{ __('translation.category') }}</th>
+                                    <th>{{ __('translation.serial') }}</th>
                                     <th>{{ __('translation.stored_at') }}</th>
                                 </tr>
                                 @foreach ($devices as $device)
@@ -48,12 +48,7 @@ use App\Category;
                                         <td><img src="{{ asset('/public/images/devices/' . $device->image) }}" alt="image"
                                                 width="150px"> </td>
 
-                                        <td>
-                                            <div class="list-item">{{ $device->name }}</div>
-                                        </td>
-                                        <td>
-                                            <div class="list-item">{{ $device->full_serial }}</div>
-                                        </td>
+                                        <td><div class="list-item device-name" data-id="{{$device->id}}"> {{ $device->name }}</div></td>
                                         <td>
                                             <div class="list-item">
                                                 @if ($category = Category::find($device->category_id))
@@ -63,6 +58,7 @@ use App\Category;
                                                 @endif
                                             </div>
                                         </td>
+                                        <td><div class="list-item">{{ $device->full_serial }}</div></td>
                                         <td><div class="list-item">{{$device->stored_at}}</div></td>
                                         <td>
                                             <form class="float-right" action="{{ route('devices.destroy', $device->id) }}"
@@ -82,13 +78,71 @@ use App\Category;
                                 @endforeach
                             </table>
 
+                            {{-- Invoice info Modal  --}}
+                            <div id="invoice-modal" class="modal" tabindex="-1">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    
+                                    <div class="modal-header justify-content-center">
+                                      <h4 class="modal-title" id="modal-title" style="color: rgb(29, 199, 29);">{{__("translation.invoice_info")}}</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <h5>{{__("translation.client_name")}}</h5>
+                                        <p id="modal-client-name"></p>
+                                        <hr>
+                                        <h5>{{__("translation.device_name")}}</h5>
+                                        <p id="modal-device-name"></p>
+                                        <hr>
+                                        <h5>{{__("translation.purchase_date")}}</h5>
+                                        <p id="modal-purchase-date"></p>
+                                        <hr>
+                                        <h5>{{__("translation.technical_support")}}</h5>
+                                        <p id="modal-technical-support"></p>
+                                        <hr>
+                                        <h5>{{__("translation.repairing_service")}}</h5>
+                                        <p id="modal-repairing-service"></p>
+                                        <hr>
+                                        <h5>{{__("translation.premium_support")}}</h5>
+                                        <p id="modal-premium-support"></p>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                            {{-- No Invoice Modal  --}}
+                            <div id="no-invoice-modal" class="modal" tabindex="-1">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header justify-content-center">
+                                      <h4 class="modal-title" id="modal-title" style="color: rgb(29, 199, 29);">{{__("translation.invoice_info")}}</h4>
+                                      
+                                    </div>
+                                    
+                                    <div class="modal-body" id="no-invoice-modal-body">
+                                        <h5>{{__("translation.no_invoice_message")}}</h5>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+
                             <div class="row justify-content-center">
                                 {{ $devices->links() }}
                             </div>
                         @else
                             <p>No devices yet</p>
                         @endif
-
 
                     </div>
                 </div>
@@ -136,4 +190,60 @@ use App\Category;
             w.window.print();
         }
     </script>
+
+    <script>
+        $(document).ready(function(){
+            $(".device-name").on("click",function(event){
+                
+                let device = event.target;
+
+                event.preventDefault();
+
+                let id = device.dataset.id;
+                let _token   = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajax({
+                    url: "{{ route('invoice-info-ajax') }}",
+                    type:"POST",
+                    data:{
+                        id: id,
+                        _token: _token
+                    },
+                    success:function(response){
+                        $("#invoice-modal").modal("show");
+                        console.log(response);
+                        if(response) {
+                            
+                            $("#invoice-modal").find("#modal-client-name").text(response.client.name);
+                            $("#invoice-modal").find("#modal-device-name").text(response.device_name);
+                            $("#invoice-modal").find("#modal-purchase-date").text(response.invoice.purchase_date);
+                            
+                            if(response.invoice.technical_support){
+                                $("#invoice-modal").find("#modal-technical-support").text(response.invoice.technical_support);
+                            }else{
+                                $("#invoice-modal").find("#modal-technical-support").text(response.not_available);
+                            }
+                            if(response.invoice.repairing_service){
+                                $("#invoice-modal").find("#modal-repairing-service").text(response.invoice.repairing_service);
+                            }else{
+                                $("#invoice-modal").find("#modal-repairing-service").text(response.not_available);
+                            }
+                            if(response.invoice.premium_support){
+                                $("#invoice-modal").find("#modal-premium-support").text(response.invoice.premium_support);
+                            }else{
+                                $("#invoice-modal").find("#modal-premium-support").text(response.not_available);
+                            }
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        $("#no-invoice-modal").modal("show");
+                    }
+                });
+                
+            });
+
+        });
+    </script>
+    
 @endsection
