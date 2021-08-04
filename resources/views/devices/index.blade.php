@@ -37,7 +37,7 @@ use App\Category;
                         @if ($devices->count() > 0)
                             <table class="table">
                                 <tr>
-                                    <th>{{ __('translation.image') }}</th>
+                                    {{-- <th>{{ __('translation.image') }}</th> --}}
                                     <th>{{ __('translation.name') }}</th>
                                     <th>{{ __('translation.category') }}</th>
                                     <th>{{ __('translation.serial') }}</th>
@@ -45,8 +45,7 @@ use App\Category;
                                 </tr>
                                 @foreach ($devices as $device)
                                     <tr>
-                                        <td><img src="{{ asset('/public/images/devices/' . $device->image) }}" alt="image"
-                                                width="150px"> </td>
+                                        {{-- <td><img src="{{ asset('/public/images/devices/' . $device->image) }}" alt="image" width="150px"> </td> --}}
 
                                         <td><div class="list-item device-name" data-id="{{$device->id}}"> {{ $device->name }}</div></td>
                                         <td>
