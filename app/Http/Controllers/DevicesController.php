@@ -152,6 +152,9 @@ class DevicesController extends Controller
         $id = $request->id;
         $device = Device::find($id);
         $invoice = $device->invoice;
+        if($invoice == null){
+            return null;
+        }
         $client = Client::find($invoice->client_id);
         $device_name = $device->name;
         $not_available = __('translation.not_available');

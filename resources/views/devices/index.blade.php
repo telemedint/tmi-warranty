@@ -210,10 +210,10 @@ use App\Category;
                         _token: _token
                     },
                     success:function(response){
-                        $("#invoice-modal").modal("show");
+                        
                         console.log(response);
                         if(response) {
-                            
+                            $("#invoice-modal").modal("show");    
                             $("#invoice-modal").find("#modal-client-name").text(response.client.name);
                             $("#invoice-modal").find("#modal-device-name").text(response.device_name);
                             $("#invoice-modal").find("#modal-purchase-date").text(response.invoice.purchase_date);
@@ -233,11 +233,13 @@ use App\Category;
                             }else{
                                 $("#invoice-modal").find("#modal-premium-support").text(response.not_available);
                             }
+                        }else{
+                            $("#no-invoice-modal").modal("show");
                         }
                     },
                     error: function (data) {
                         console.log(data);
-                        $("#no-invoice-modal").modal("show");
+                        
                     }
                 });
                 
