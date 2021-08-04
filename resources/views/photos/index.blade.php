@@ -30,7 +30,6 @@ use App\Photo;
                                 <tr>
                                     <th>{{ __('translation.image') }}</th>
                                     <th>{{ __('translation.name') }}</th>
-                                    <th>{{ __('translation.path') }}</th>
                                 </tr>
                                 @foreach ($photos as $photo)
                                     <tr>
@@ -39,9 +38,6 @@ use App\Photo;
 
                                         <td>
                                             <div class="list-item">{{ $photo->name }}</div>
-                                        </td>
-                                        <td>
-                                            <div class="list-item">{{ $photo->path }}</div>
                                         </td>
 
                                         <td>
