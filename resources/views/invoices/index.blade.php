@@ -15,6 +15,7 @@
                         <table class="table">
                             <tr>
                                 <th>{{__('translation.client_name')}}</th>
+                                <th>{{__('translation.device_name')}}</th>
                                 <th>{{__('translation.purchase_date')}}</th>
                                 <th>{{__('translation.technical_support')}}</th>
                                 <th>{{__('translation.repairing_service')}}</th>
@@ -32,6 +33,7 @@
                                             @endif
                                         </div>
                                     </td>
+                                    <td><div class="list-item">{{$invoice->device->name}}</div></td>
                                     <td><div class="list-item">{{$invoice->purchase_date}}</div></td>
                                     <td><div class="list-item">{{$invoice->technical_support}}</div></td>
                                     <td><div class="list-item">{{$invoice->repairing_service}}</div></td>
