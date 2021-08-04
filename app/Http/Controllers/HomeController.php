@@ -40,7 +40,12 @@ class HomeController extends Controller
         $device = Device::where('full_serial', $serial)->first();
         if($device){
             $invoice = $device->invoice;
-            return view('frontend.device')->with('invoice', $invoice);
+            if($invoice){
+                return view('frontend.device')->with('invoice', $invoice);
+            }else{
+                session()->flash('error',"This device dosen't have an invoice");
+                return redirect(route('main-page'));    
+            }
         }else{
             session()->flash('error',"Couldn 't find the device. Please enter another serial ");
             return redirect(route('main-page'));
