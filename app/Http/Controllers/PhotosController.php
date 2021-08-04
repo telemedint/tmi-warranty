@@ -110,9 +110,14 @@ class PhotosController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        $destination_path = public_path('images/devices');
-        File::delete( $destination_path . '/' . $photo->name);
-        $photo->delete();
+        if($photo->devices->count()>0){
+            session()->flash('error', 'Photo can not be deleted; it has been used by some devices.');
+        }else{
+            $destination_path = public_path('images/devices');
+            File::delete( $destination_path . '/' . $photo->name);
+            $photo->delete();
+        }
+        
         return redirect(route('photos.index'));
     }
 }
