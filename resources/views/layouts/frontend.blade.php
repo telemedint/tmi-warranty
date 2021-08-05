@@ -17,7 +17,7 @@
                     <a href="index.html">
                         <img src="{{ asset('themes/frontend/assets/images/logo.PNG') }}" />
                     </a>
-                    <a href="index.html" class="bold side-link">
+                    <a href="{{route('main-page')}}" class="bold side-link">
                         Check another serial <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     </a>
                 </header>

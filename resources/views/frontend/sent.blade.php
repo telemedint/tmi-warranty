@@ -14,7 +14,7 @@
                     <br />
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="requested.html" class="bold">
+                            <a href="{{ URL::previous() }}" class="bold">
                                 <i class="fa fa-long-arrow-left" aria-hidden="true"></i> My product
                             </a>
                             <br />
@@ -37,7 +37,6 @@
                         <div class="col-md-12">
                             <h1 class="bold">
                                 {{-- Telemed electronic stethoscope 3rd generation --}}
-                                {{-- {{dd($ticket)}} --}}
                                 {{$ticket->device->name}}
                             </h1>
                         </div>
