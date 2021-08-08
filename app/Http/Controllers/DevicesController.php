@@ -22,7 +22,7 @@ class DevicesController extends Controller
      */
     public function index()
     {
-        $devices = Device::paginate(10);
+        $devices = Device::all();
         return view('devices.index', ['devices' => $devices, 'categories', Category::all()]);
     }
 

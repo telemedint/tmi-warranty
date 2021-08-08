@@ -23,6 +23,9 @@
     @else
         <link rel="stylesheet" href="{{ asset('css/rtl-app.css') }}">
     @endif
+
+    <link rel="stylesheet" href="{{ asset('DataTables-1.10.25/css/jquery.dataTables.min.css') }}">
+
     
     @yield('style')
 </head>
@@ -124,6 +127,7 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('DataTables-1.10.25/js/jquery.dataTables.min.js') }}"></script>
     @yield('script')
 </body>
 </html>

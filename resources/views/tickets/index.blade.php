@@ -1,7 +1,9 @@
 @extends('layouts.app')
+
 @section('style')
     <link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
 @endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -17,14 +19,18 @@
                         <div class="alert alert-success">{{session()->get('success')}}</div>
                     @endif
                     @if ($tickets->count() > 0)
-                        <table class="table">
-                            <tr>
-                                <th>{{__('translation.applicant_name')}}</th>
-                                <th>{{__('translation.applicant_phone')}}</th>
-                                <th>{{__('translation.details')}}</th>
-                                <th>{{__('translation.request_date')}}</th>
-                                <th>{{__('translation.status')}}</th>
-                            </tr>
+                        <table class="table display" id="tickets_table">
+                            <thead>
+                                <tr>
+                                    <th>{{__('translation.applicant_name')}}</th>
+                                    <th>{{__('translation.applicant_phone')}}</th>
+                                    <th>{{__('translation.details')}}</th>
+                                    <th>{{__('translation.request_date')}}</th>
+                                    <th>{{__('translation.status')}}</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
                             @foreach ($tickets as $ticket)
                                 <tr>
                                     <td><div class="list-item">{{$ticket->applicant_name}}</div></td>
@@ -35,25 +41,12 @@
                                         <select id="{{$ticket->id}}" class="status-select custom-select custom-select-sm" style="color: {{boolval($ticket->status) ? '#27e024' : '#505250'}}">
                                             <option value="0" @if (!$ticket->status) selected @endif>{{__('translation.open')}}</option>
                                             <option value="1" @if ($ticket->status) selected @endif>{{__('translation.finished')}}</option>
-                                        </select>
-            
-                                        {{-- <form class="float-right" action="{{route('tickets.destroy', $ticket->id)}}" 
-                                        method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm ml-2" onclick="return confirm('Are you sure?')">
-                                                {{__('translation.delete')}}
-                                            </button>
-                                        </form> --}}
-                                        {{-- <a href="{{route('tickets.edit',$ticket->id)}}" class="btn btn-primary btn-sm float-right">{{__('translation.edit')}}</a> --}}
+                                        </select>    
                                     </td>
                                 </tr>
                             @endforeach
+                            </tbody>
                         </table>
-                        <div class="row justify-content-center">
-                            {{ $tickets->links() }}
-                        </div>
-                        
 
                     @else
                         <p>No tickets yet</p> 
@@ -66,7 +59,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script> --}}
     <script src="{{ asset('js/select2.min.js') }}"></script>
     
     <script>
@@ -75,7 +68,7 @@
         });
     </script>
 
-    <script type="text/javascript">
+    <script>
         //Save status onchange of serial
         $(".status-select").on('change',function(event){
             event.preventDefault();
@@ -107,6 +100,12 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        $(document).ready( function () {
+            $('#tickets_table').DataTable();
+        } );
     </script>
     
 @endsection

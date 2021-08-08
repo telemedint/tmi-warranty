@@ -1,10 +1,7 @@
 @extends('layouts.app')
 
-<?php
-use Illuminate\Support\Facades\Storage;
-use App\Category;
-?>
 @section('style')
+    {{-- <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css') }}"> --}}
     <style>
         .device-name:hover {
             color:#ccc42b;
@@ -35,14 +32,19 @@ use App\Category;
                     
 
                         @if ($devices->count() > 0)
-                            <table class="table">
+                            <table class="table display" id="devices_table">
+                                <thead>
                                 <tr>
                                     {{-- <th>{{ __('translation.image') }}</th> --}}
                                     <th>{{ __('translation.name') }}</th>
                                     <th>{{ __('translation.category') }}</th>
                                     <th>{{ __('translation.serial') }}</th>
                                     <th>{{ __('translation.stored_at') }}</th>
+                                    <th>{{ __('translation.options') }}</th>
                                 </tr>
+                                </thead>
+
+                                <tbody>
                                 @foreach ($devices as $device)
                                     <tr>
                                         {{-- <td><img src="{{ asset('/public/images/devices/' . $device->image) }}" alt="image" width="150px"> </td> --}}
@@ -50,7 +52,7 @@ use App\Category;
                                         <td><div class="list-item device-name" data-id="{{$device->id}}"> {{ $device->name }}</div></td>
                                         <td>
                                             <div class="list-item">
-                                                @if ($category = Category::find($device->category_id))
+                                                @if ($category = $device->category)
                                                     {{ $category->name }}
                                                 @else
                                                     Category has been deleted
@@ -75,6 +77,7 @@ use App\Category;
                                         </td>
                                     </tr>
                                 @endforeach
+                                </tbody>
                             </table>
 
                             {{-- Invoice info Modal  --}}
@@ -136,9 +139,6 @@ use App\Category;
                                 </div>
                             </div>
 
-                            <div class="row justify-content-center">
-                                {{ $devices->links() }}
-                            </div>
                         @else
                             <p>No devices yet</p>
                         @endif
@@ -245,6 +245,13 @@ use App\Category;
             });
 
         });
+    </script>
+
+    {{-- <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script> --}}
+    <script>
+        $(document).ready( function () {
+            $('#devices_table').DataTable();
+        } );
     </script>
     
 @endsection

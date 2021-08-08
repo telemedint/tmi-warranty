@@ -20,7 +20,7 @@ class InvoicesController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::paginate(10);
+        $invoices = Invoice::all();
         return view('invoices.index', ['invoices' => $invoices, 'clients', Client::all()]);
     }
 

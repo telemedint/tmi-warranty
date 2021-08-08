@@ -16,12 +16,17 @@
 
                 <div class="card-body">
                     @if ($categories->count() > 0)
-                        <table class="table">
-                            <tr>
-                                <th>{{__('translation.name')}}</th>
-                                <th>{{__('translation.code')}}</th>
-                                <th>{{__('translation.serial')}}</th>
-                            </tr>
+                        <table class="table" id="categories_table">
+                            <thead>
+                                <tr>
+                                    <th>{{__('translation.name')}}</th>
+                                    <th>{{__('translation.code')}}</th>
+                                    <th>{{__('translation.serial')}}</th>
+                                    <th>{{__('translation.options')}}</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
                             @foreach ($categories as $category)
                                 <tr>
                                     <td><div class="list-item">{{$category->name}}</div></td>
@@ -40,6 +45,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            </tbody>
                         </table>
                     @else
                         <p>No categories yet</p> 
@@ -49,4 +55,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready( function () {
+            $('#categories_table').DataTable();
+        } );
+    </script>
 @endsection

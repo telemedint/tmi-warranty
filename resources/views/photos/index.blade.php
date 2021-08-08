@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-<?php
-use Illuminate\Support\Facades\Storage;
-use App\Photo;
-?>
 @section('style')
     <style>
     </style>
@@ -30,39 +26,41 @@ use App\Photo;
                         @endif
 
                         @if ($photos->count() > 0)
-                            <table class="table">
-                                <tr>
-                                    <th>{{ __('translation.image') }}</th>
-                                    <th>{{ __('translation.name') }}</th>
-                                </tr>
+                            <table class="table" id="photos_table">
+                                <thead>
+                                    <tr>
+                                        <th>{{ __('translation.image') }}</th>
+                                        <th>{{ __('translation.name') }}</th>
+                                        <th>{{ __('translation.options') }}</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
                                 @foreach ($photos as $photo)
                                     <tr>
-                                        <td><img src="{{ asset('/public/images/devices/' . $photo->name) }}" alt="image"
-                                            width="150px"> </td>
-
                                         <td>
-                                            <div class="list-item">{{ $photo->name }}</div>
+                                            <img src="{{ asset('/public/images/devices/' . $photo->name) }}" alt="image"
+                                            width="300px"> 
+                                        </td>
+                                        <td>
+                                            <div class="list-item" style="text-align: center; margin: 35% 0; font-weight: bold; font-size: 16px;">{{ $photo->name }}</div>
                                         </td>
 
                                         <td>
-                                            <form class="float-right" action="{{ route('photos.destroy', $photo->id) }}"
-                                                method="POST">
+                                            <form class="float-right" action="{{ route('photos.destroy', $photo->id) }}" 
+                                                method="POST" style="text-align: center; margin: 35% 0; font-weight: bold;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger btn-sm ml-2"
                                                     onclick="return confirm('Are you sure?')">{{ __('translation.delete') }}</button>
                                             </form>
-                                            <a href="{{ route('photos.edit', $photo->id) }}"
-                                                class="btn btn-primary btn-sm float-right ml-2">{{ __('translation.edit') }}</a>
-                                            
+                                            <a href="{{ route('photos.edit', $photo->id) }}" style="text-align: center; margin: 35% 0; font-weight: bold;"
+                                                class="btn btn-primary btn-sm float-right ml-2">{{ __('translation.edit') }}</a>  
                                         </td>
                                     </tr>
                                 @endforeach
+                                </tbody>
                             </table>
-
-                            <div class="row justify-content-center">
-                                {{ $photos->links() }}
-                            </div>
                         @else
                             <p>No Photos yet</p>
                         @endif
@@ -76,5 +74,9 @@ use App\Photo;
 @endsection
 
 @section('script')
-    
+    <script>
+        $(document).ready( function () {
+            $('#photos_table').DataTable();
+        } );
+    </script>
 @endsection

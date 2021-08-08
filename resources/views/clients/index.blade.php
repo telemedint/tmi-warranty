@@ -15,12 +15,17 @@
                         <div class="alert alert-success">{{session()->get('success')}}</div>
                     @endif
                     @if ($clients->count() > 0)
-                        <table class="table">
-                            <tr>
-                                <th>{{__('translation.name')}}</th>
-                                <th>{{__('translation.phone')}}</th>
-                                <th>{{__('translation.address')}}</th>
-                            </tr>
+                        <table class="table display" id="clients_table">
+                            <thead>
+                                <tr>
+                                    <th>{{__('translation.name')}}</th>
+                                    <th>{{__('translation.phone')}}</th>
+                                    <th>{{__('translation.address')}}</th>
+                                    <th>{{ __('translation.options') }}</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
                             @foreach ($clients as $client)
                                 <tr>
                                     <td><div class="list-item">{{$client->name}}</div></td>
@@ -39,11 +44,8 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            </tbody>
                         </table>
-                        <div class="row justify-content-center">
-                            {{ $clients->links() }}
-                        </div>
-                        
 
                     @else
                         <p>No clients yet</p> 
@@ -53,4 +55,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready( function () {
+            $('#clients_table').DataTable();
+        } );
+    </script>
 @endsection

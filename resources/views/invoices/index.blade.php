@@ -12,21 +12,25 @@
 
                 <div class="card-body">
                     @if ($invoices->count() > 0)
-                        <table class="table">
-                            <tr>
-                                <th>{{__('translation.client_name')}}</th>
-                                <th>{{__('translation.device_name')}}</th>
-                                <th>{{__('translation.purchase_date')}}</th>
-                                <th>{{__('translation.technical_support')}}</th>
-                                <th>{{__('translation.repairing_service')}}</th>
-                                <th>{{__('translation.premium_support')}}</th>
-                            </tr>
+                        <table class="table display" id="invoices_table">
+                            <thead>
+                                <tr>
+                                    <th>{{__('translation.client_name')}}</th>
+                                    <th>{{__('translation.device_name')}}</th>
+                                    <th>{{__('translation.purchase_date')}}</th>
+                                    <th>{{__('translation.technical_support')}}</th>
+                                    <th>{{__('translation.repairing_service')}}</th>
+                                    <th>{{__('translation.premium_support')}}</th>
+                                    <th>{{ __('translation.options') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                             @foreach ($invoices as $invoice)
                                 <tr>
                                     {{-- <td><div class="list-item">{{$invoice->client->name}}</div></td> --}}
                                     <td>
                                         <div class="list-item">
-                                            @if($client = App\Client::find($invoice->client_id))
+                                            @if($client = $invoice->client)
                                                     {{$client->name}}  
                                             @else
                                                 Client has been deleted
@@ -52,10 +56,9 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            </tbody>
                         </table>
-                        <div class="row justify-content-center">
-                            {{ $invoices->links() }}
-                        </div>
+                        
                     @else
                         <p>No invoices yet</p>    
                     @endif    
@@ -66,4 +69,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready( function () {
+            $('#invoices_table').DataTable();
+        } );
+    </script>
 @endsection
