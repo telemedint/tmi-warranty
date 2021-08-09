@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/phone_valid.css')}}">
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -19,35 +21,37 @@
                             <label for="name" class="text-monospace" is><h5>{{__('translation.name')}}:</h5></label>
                             
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                            @if(app()->getLocale() == 'ar') placeholder= "أدخل اسم العميل" @else placeholder="Enter Client's Name"  @endif
+                            placeholder= "{{__('translation.client_placeholder')}}"
                             @isset($client) value="{{$client->name}}" @endisset>
 
                             {{-- Company --}}
                             <label for="company" class="mt-3 text-monospace"><h5>{{__('translation.company')}}:</h5></label>
                             
                             <input type="text" name="company" class="form-control"
-                            @if(app()->getLocale() == 'ar') placeholder= "أدخل اسم الشركة" @else placeholder="Enter company name" @endif
+                            placeholder= "{{__('translation.company_placeholder')}}"
                             @isset($client) value="{{$client->company}}" @endisset>
 
                             {{-- Email --}}
                             <label for="email" class="mt-3 text-monospace"><h5>{{__('translation.email')}}:</h5></label>
                             
-                            <input type="text" name="email"  class="form-control"
-                            @if(app()->getLocale() == 'ar') placeholder= "أدخل الإيميل" @else placeholder="Enter email address"  @endif
+                            <input type="email" name="email"  class="form-control" placeholder= "{{__('translation.email_placeholder')}}"
                             @isset($client) value="{{$client->email}}" @endisset>
 
                             {{-- Phone --}}
                             <label for="phone" class="mt-3 text-monospace"><h5>{{__('translation.phone')}}:</h5></label>
                             
-                            <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
-                            @if(app()->getLocale() == 'ar') placeholder= "أدخل رقم الهاتف" @else placeholder="Enter phone number"  @endif
-                            @isset($client) value="{{$client->phone}}" @endisset>
+                            <div class="phone_div" style="display: flex;">
+                                <input type="tel" pattern="[01]{2}[0-9]{9}" maxlength="11" name="phone" 
+                                class="form-control @error('phone') is-invalid @enderror" placeholder= "{{__('translation.phone_placeholder')}}"
+                                @isset($client) value="{{$client->phone}}" @endisset>
+                                
+                                <span class="validity mx-2"></span>
+                            </div>
 
                             {{-- Address --}}
                             <label for="address" class="mt-3 text-monospace"><h5>{{__('translation.address')}}:</h5></label>
                             
-                            <input type="text" name="address" class="form-control"
-                            @if(app()->getLocale() == 'ar') placeholder= "أدخل العنوان" @else placeholder="Enter address" @endif
+                            <input type="text" name="address" class="form-control" placeholder= "{{__('translation.address_placeholder')}}"
                             @isset($client) value="{{$client->address}}" @endisset>
 
                             {{-- Errors --}}

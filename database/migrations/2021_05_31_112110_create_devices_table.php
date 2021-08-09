@@ -19,7 +19,7 @@ class CreateDevicesTable extends Migration
             $table->string('full_serial');
             $table->string('serial_second');
             $table->string('serial_first');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->date('stored_at')->nullable();
             $table->integer('photo_id');
             $table->integer('category_id');

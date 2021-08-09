@@ -50,6 +50,13 @@ return[
     'update_photo' => 'تحديث بيانات الصورة',
     'select_photo'=> 'اختر صورة',
 
+    /**-------------- Placeholders -------------- */
+    'client_placeholder'=>"أدخل اسم العميل",
+    'company_placeholder'=>"أدخل اسم الشركة",
+    'email_placeholder'=>"أدخل البريد الإلكتروني",
+    'phone_placeholder'=>"أدخل رقم الهاتف",
+    'address_placeholder'=>"أدخل العنوان",
+
 
     /*-------------------Client Info-------------------*/
     'name' => 'الاسم',

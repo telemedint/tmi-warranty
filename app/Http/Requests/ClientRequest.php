@@ -25,7 +25,8 @@ class ClientRequest extends FormRequest
     {
         return [
             'name'=> 'required|unique:clients',
-            'phone'=> 'required'
+            'phone'=> 'required|digits:11'
+            // 'phone'=> 'required|numeric|size:10'
         ];
     }
 

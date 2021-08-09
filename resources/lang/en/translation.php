@@ -51,6 +51,13 @@ return[
     'update_photo' => 'Update Photo data',
     'select_photo'=> 'Select a Photo',
 
+    /**-------------- Placeholders -------------- */
+    'client_placeholder'=>"Enter client name",
+    'company_placeholder'=>"Enter company name",
+    'email_placeholder'=>"Enter email address",
+    'phone_placeholder'=>"Enter phone number",
+    'address_placeholder'=>"Enter the address",
+
     /*-------------------Client Info-------------------*/
     'name' => 'Name',
     'company' => 'Company',
