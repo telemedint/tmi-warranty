@@ -56,6 +56,7 @@ return[
     'email_placeholder'=>"أدخل البريد الإلكتروني",
     'phone_placeholder'=>"أدخل رقم الهاتف",
     'address_placeholder'=>"أدخل العنوان",
+    'phone_valid' =>"من فضلك أدخل رقم هاتف صحيح",
 
 
     /*-------------------Client Info-------------------*/

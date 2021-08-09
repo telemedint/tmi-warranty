@@ -41,7 +41,7 @@
                             <label for="phone" class="mt-3 text-monospace"><h5>{{__('translation.phone')}}:</h5></label>
                             
                             <div class="phone_div" style="display: flex;">
-                                <input type="tel" pattern="[01]{2}[0-9]{9}" maxlength="11" name="phone" 
+                                <input type="tel" pattern="[01]{2}[0-9]{9}" maxlength="11" name="phone" title="{{__('translation.phone_valid')}}"
                                 class="form-control @error('phone') is-invalid @enderror" placeholder= "{{__('translation.phone_placeholder')}}"
                                 @isset($client) value="{{$client->phone}}" @endisset>
                                 

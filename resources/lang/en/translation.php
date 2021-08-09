@@ -57,6 +57,7 @@ return[
     'email_placeholder'=>"Enter email address",
     'phone_placeholder'=>"Enter phone number",
     'address_placeholder'=>"Enter the address",
+    'phone_valid' =>"Please enter a valid phone number",
 
     /*-------------------Client Info-------------------*/
     'name' => 'Name',
