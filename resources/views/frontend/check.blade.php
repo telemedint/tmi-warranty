@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-6">
                 <header>
-                    <a href="index.html">
+                    <a href="{{route('main-page')}}">
                         <img src="{{ asset('themes/frontend/assets/images/logo.PNG') }}" />
                     </a>
                 </header>

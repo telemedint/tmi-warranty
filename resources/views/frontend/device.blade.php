@@ -1,12 +1,5 @@
 @extends('layouts.frontend')
 
-<?php
-    use Illuminate\Support\Facades\Storage;
-    use App\Invoice;
-    use App\Device;
-    use App\Client;
-?>
-
 @section('title') Check Serial @endsection
 
 @section('vendor_css')  
@@ -115,7 +108,7 @@
   <div class="col-md-4 fill-home">
       <div class="padding-for-side-image">
           {{-- <img src="{{ asset('themes/frontend/assets/images/phone.jpg') }}" /> --}}
-          <img src="{{asset('public/images/devices/' . $invoice->device->image)}}" alt="Device Image"/>
+          <img src="{{asset('public/images/devices/' . $invoice->device->photo->name)}}" alt="Device Image"/>
       </div>
   </div>
  
