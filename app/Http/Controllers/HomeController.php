@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Client;
 use App\Device;
 use App\Invoice;
 use App\Ticket;
@@ -26,7 +28,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $clients_num = Client::all()->count();
+        $categories_num = Category::all()->count();
+        $devices_num = Device::all()->count();
+        $invoices_num = Invoice::all()->count();
+        $tickets_num = Ticket::all()->count();
+        return view('home',
+            ['clients_num'=>$clients_num,
+             'categories_num'=>$categories_num,
+             'categories_num'=>$categories_num,
+             'devices_num'=>$devices_num,
+             'invoices_num'=>$invoices_num,
+             'tickets_num'=>$tickets_num,
+            ]);
     }
 
     public function checkSerial()
