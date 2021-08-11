@@ -107,7 +107,7 @@
                                     <h5 style="font-weight: bold">{{__('translation.image')}}:</h5>
                                 </label>
 
-                                <input type="file" name="image" class="form-control-file"
+                                <input type="file" id="image" name="image" class="form-control-file"
                                 @isset($device)value="{{$device->image}}" @endisset>
                             </div>
 
@@ -219,6 +219,22 @@
                     console.log(data);
                 }
             });
+        });
+    </script>
+
+    {{-- Check image input --}}
+    <script>
+        $('.submit_btn').on('click',function(event){
+            
+            let photo_id = $("#photo").val();
+            let image = $("#image").val();
+            // console.log(photo_id);
+            // console.log(image);
+            if(photo_id == null & image=='') {
+                event.preventDefault();
+                alert('please choose a photo or upload an image');
+            }
+            
         });
     </script>
     
