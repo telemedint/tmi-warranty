@@ -14,6 +14,11 @@
                     @if (session()->has('success'))
                         <div class="alert alert-success">{{session()->get('success')}}</div>
                     @endif
+
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger">{{session()->get('error')}}</div>
+                    @endif
+                    
                     @if ($clients->count() > 0)
                         <table class="table display" id="clients_table">
                             <thead>

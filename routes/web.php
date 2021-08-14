@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('/cpanel/clients','ClientsController');
     Route::resource('/cpanel/devices','DevicesController')->middleware('check.category');
     Route::resource('/cpanel/categories','CategoriesController');
-    Route::resource('/cpanel/invoices','InvoicesController');
+    Route::resource('/cpanel/invoices','InvoicesController')->middleware('check.clients');
     Route::resource('/cpanel/tickets','TicketsController');
     Route::resource('/cpanel/photos','PhotosController');
     Route::post('/cpanel/tickets/', 'TicketsController@updateStatus')->name('tickets.updateStatus');
